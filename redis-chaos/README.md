@@ -87,6 +87,13 @@ pinned to the commit the experiments ran against).
   `HEAL` lines in the load output show what it did. See
   `experiments/reports/J.md` for what it buys.
 
+## Handoff (`handoff/`)
+
+`handoff/HANDOFF.md` tells another agent how to make an application resilient
+to these incidents without changing redis-rs: TCP_USER_TIMEOUT, coherent
+timeouts, and the `Healer` module (`handoff/src/healer.rs`, a crate with unit
+tests and a smoke binary for the lab).
+
 ## Smoke suite
 
 `bin/smoke` runs 8 basic incidents, each under load. The timeline is 5s

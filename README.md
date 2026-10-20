@@ -5,7 +5,7 @@ self-contained and has its own README.
 
 | directory | what |
 |---|---|
-| [`redis-chaos/`](redis-chaos/) | Redis Cluster (3 DCs × 3 shards) under infrastructure incidents, with a redis-rs client: the lab, 64 scenarios, raw runs, reports, and an app-side self-healing workaround. |
+| [`redis-chaos/`](redis-chaos/) | Redis Cluster (3 DCs × 3 shards) under infrastructure incidents, with a redis-rs client: the lab, 64 scenarios, raw runs, reports, and an app-side self-healing workaround with a [handoff](redis-chaos/handoff/HANDOFF.md) for applying it. |
 
 Clone with submodules:
 

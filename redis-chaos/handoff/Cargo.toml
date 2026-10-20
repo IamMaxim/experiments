@@ -1,0 +1,22 @@
+[package]
+name = "redis-cluster-healer"
+version = "0.1.0"
+edition = "2024"
+description = "App-side self-healing for redis-rs ClusterConnection; see HANDOFF.md"
+publish = false
+
+[workspace]
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "healer-smoke"
+path = "src/main.rs"
+
+[dependencies]
+redis = { path = "../redis-rs/redis", default-features = false, features = ["tokio-comp", "cluster-async"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync"] }
+log = "0.4"
+crc16 = "0.4"
+env_logger = "0.11"
