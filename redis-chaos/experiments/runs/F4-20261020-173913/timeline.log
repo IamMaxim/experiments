@@ -1,0 +1,6 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: restart all 9 nodes at once
+t= 12.1s   restart: rc-dc1-s1 rc-dc1-s2 rc-dc1-s3 rc-dc2-s1 rc-dc2-s2 rc-dc2-s3 rc-dc3-s1 rc-dc3-s2 rc-dc3-s3
+t= 35.0s heal
+t= 50.0s load finished
+t= 50.6s cluster healthy

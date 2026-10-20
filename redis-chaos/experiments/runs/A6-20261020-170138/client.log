@@ -1,0 +1,74 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 1.00756ms
+t=  0.0s run 1792515699: mode=Set 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792515699:
+t=  1.0s ok=400  err=0    p50=  0.39ms p99=   0.54ms max=   0.57ms s1=136/0 s2=133/0 s3=131/0 
+t=  2.0s ok=400  err=0    p50=  0.38ms p99=   1.06ms max=   1.14ms s1=132/0 s2=136/0 s3=132/0 
+t=  3.0s ok=400  err=0    p50=  0.40ms p99=   1.48ms max=   1.50ms s1=139/0 s2=128/0 s3=133/0 
+t=  4.0s ok=400  err=0    p50=  0.38ms p99=   1.47ms max=   1.50ms s1=123/0 s2=142/0 s3=135/0 
+t=  5.0s ok=400  err=0    p50=  0.38ms p99=   3.32ms max=   3.44ms s1=133/0 s2=134/0 s3=133/0 
+t=  5.8s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG WARN async cluster client recovery: beginning slot refresh
+t=  5.8s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.8s LOG INFO async cluster client recovery: slot refresh complete
+t=  6.0s ok=31   err=0    p50=  0.42ms p99=   0.58ms max=   0.58ms s1=4/0 s2=12/0 s3=15/0 
+t=  6.9s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t=  6.9s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: timed out
+t=  7.0s LOG INFO ClusterConnInner: reconnected to 10.77.11.10:6379 
+t=  7.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  7.1s first 'server:ClusterDown:The' on s1: ClusterDown: The cluster is down
+t=  8.0s ok=25   err=16   p50=  0.25ms p99=   0.49ms max=   0.49ms s1=0/16 s2=13/0 s3=12/0 16x server:ClusterDown:The
+t=  9.0s ok=247  err=0    p50=  0.33ms p99=1281.46ms max=1281.49ms s1=94/0 s2=76/0 s3=77/0 
+t= 10.0s ok=400  err=0    p50=  0.35ms p99=   0.51ms max=   0.55ms s1=127/0 s2=136/0 s3=137/0 
+t= 11.0s ok=400  err=0    p50=  0.35ms p99=   1.12ms max=   1.16ms s1=133/0 s2=135/0 s3=132/0 
+t= 12.0s ok=400  err=0    p50=  0.39ms p99=   1.26ms max=   1.33ms s1=130/0 s2=138/0 s3=132/0 
+t= 13.0s ok=400  err=0    p50=  0.39ms p99=   0.56ms max=   0.57ms s1=135/0 s2=139/0 s3=126/0 
+t= 14.0s ok=400  err=0    p50=  0.38ms p99=   1.21ms max=   1.27ms s1=135/0 s2=125/0 s3=140/0 
+t= 15.0s ok=400  err=0    p50=  0.38ms p99=   0.58ms max=   0.59ms s1=126/0 s2=139/0 s3=135/0 
+t= 16.0s ok=400  err=0    p50=  0.38ms p99=   2.00ms max=   2.07ms s1=138/0 s2=131/0 s3=131/0 
+t= 17.0s ok=400  err=0    p50=  0.38ms p99=   1.47ms max=   1.49ms s1=130/0 s2=142/0 s3=128/0 
+t= 18.0s ok=400  err=0    p50=  0.38ms p99=   2.18ms max=   2.26ms s1=130/0 s2=138/0 s3=132/0 
+t= 19.0s ok=400  err=0    p50=  0.38ms p99=   2.60ms max=   2.63ms s1=139/0 s2=126/0 s3=135/0 
+t= 20.0s ok=400  err=0    p50=  0.38ms p99=   0.61ms max=   0.69ms s1=126/0 s2=137/0 s3=137/0 
+t= 21.0s ok=400  err=0    p50=  0.38ms p99=   0.51ms max=   0.52ms s1=135/0 s2=132/0 s3=133/0 
+t= 22.0s ok=400  err=0    p50=  0.36ms p99=   0.57ms max=   0.68ms s1=129/0 s2=141/0 s3=130/0 
+t= 23.0s ok=400  err=0    p50=  0.37ms p99=   2.28ms max=   2.35ms s1=136/0 s2=138/0 s3=126/0 
+t= 24.0s ok=400  err=0    p50=  0.38ms p99=   0.72ms max=   0.76ms s1=136/0 s2=128/0 s3=136/0 
+t= 25.0s ok=400  err=0    p50=  0.38ms p99=   2.86ms max=   2.97ms s1=126/0 s2=137/0 s3=137/0 
+t= 26.0s ok=400  err=0    p50=  0.36ms p99=   0.53ms max=   0.57ms s1=139/0 s2=132/0 s3=129/0 
+t= 27.0s ok=400  err=0    p50=  0.35ms p99=   0.49ms max=   0.53ms s1=128/0 s2=139/0 s3=133/0 
+t= 28.0s ok=400  err=0    p50=  0.35ms p99=   0.65ms max=   0.87ms s1=131/0 s2=133/0 s3=136/0 
+t= 29.0s ok=400  err=0    p50=  0.35ms p99=   0.69ms max=   0.78ms s1=133/0 s2=136/0 s3=131/0 
+t= 30.0s ok=400  err=0    p50=  0.36ms p99=   0.65ms max=   0.70ms s1=130/0 s2=133/0 s3=137/0 
+t= 31.0s ok=400  err=0    p50=  0.35ms p99=   0.63ms max=   0.75ms s1=142/0 s2=131/0 s3=127/0 
+t= 32.0s ok=400  err=0    p50=  0.35ms p99=   0.99ms max=   1.02ms s1=125/0 s2=144/0 s3=131/0 
+t= 33.0s ok=400  err=0    p50=  0.35ms p99=   1.22ms max=   1.27ms s1=131/0 s2=131/0 s3=138/0 
+t= 34.0s ok=400  err=0    p50=  0.35ms p99=   0.56ms max=   0.59ms s1=138/0 s2=134/0 s3=128/0 
+t= 35.0s ok=400  err=0    p50=  0.37ms p99=   0.68ms max=   0.70ms s1=129/0 s2=134/0 s3=137/0 
+t= 36.0s ok=400  err=0    p50=  0.35ms p99=   0.55ms max=   0.60ms s1=131/0 s2=135/0 s3=134/0 
+t= 37.0s ok=400  err=0    p50=  0.38ms p99=   0.67ms max=   0.70ms s1=128/0 s2=139/0 s3=133/0 
+t= 38.0s ok=400  err=0    p50=  0.35ms p99=   0.70ms max=   0.82ms s1=140/0 s2=129/0 s3=131/0 
+t= 39.0s ok=400  err=0    p50=  0.35ms p99=   0.83ms max=   0.88ms s1=138/0 s2=135/0 s3=127/0 
+t= 40.0s ok=400  err=0    p50=  0.36ms p99=   0.75ms max=   1.85ms s1=124/0 s2=140/0 s3=136/0 
+t= 40.0s ok=16   err=0    p50=  0.37ms p99=   0.43ms max=   0.43ms s1=7/0 s2=3/0 s3=6/0 
+total: 14719 ok, 16 errors, 0 stale reads, 0 shed, max latency 1281.5ms
+s1: 16 errors between t=8s and t=8s (1 seconds with errors, 1 of them with no ok)
+errors: 16x server:ClusterDown:The
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

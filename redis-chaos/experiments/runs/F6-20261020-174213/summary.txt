@@ -1,0 +1,6 @@
+total: 42 ok, 9 errors, 0 stale reads, 0 shed, max latency 2.8ms
+s1: 2 errors between t=25s and t=29s (2 seconds with errors, 2 of them with no ok)
+s2: 4 errors between t=7s and t=33s (4 seconds with errors, 4 of them with no ok)
+s3: 3 errors between t=9s and t=27s (3 seconds with errors, 3 of them with no ok)
+errors: 8x io:broken pipe; 1x server:Moved:15194
+verify: 42 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

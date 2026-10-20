@@ -1,0 +1,100 @@
+== A2: master dc1-s1 cut off with ICMP reject
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: master dc1-s1 cut off with ICMP reject
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 58.8s load finished
+t= 61.1s cluster healthy
+total: 2485 ok, 240 errors, 0 stale reads, 0 shed, max latency 9.3ms
+s1: 240 errors between t=9s and t=52s (20 seconds with errors, 20 of them with no ok)
+errors: 240x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/A2-20261020-165850
+== A4: SIGSTOP master dc3-s3 (hung process)
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: SIGSTOP master dc3-s3 (hung process)
+t=  5.0s   pause: rc-dc3-s3
+t= 35.0s heal
+t= 35.0s   unpause: rc-dc3-s3
+t= 50.1s load finished
+t= 50.8s cluster healthy
+total: 8354 ok, 144 errors, 0 stale reads, 0 shed, max latency 2516.6ms
+s3: 144 errors between t=9s and t=33s (9 seconds with errors, 9 of them with no ok)
+errors: 144x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/A4-20261020-165953
+== A5: graceful stop (SIGTERM) of master dc1-s1, start after 30s
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: graceful stop (SIGTERM) of master dc1-s1, start after 30s
+t=  5.5s   stop: rc-dc1-s1
+t= 35.0s heal
+t= 35.1s   start: rc-dc1-s1
+t= 50.0s load finished
+t= 51.1s cluster healthy
+total: 16526 ok, 30 errors, 0 stale reads, 0 shed, max latency 2285.7ms
+s1: 29 errors between t=7s and t=15s (8 seconds with errors, 6 of them with no ok)
+s2: 1 errors between t=15s and t=15s (1 seconds with errors, 0 of them with no ok)
+errors: 14x io:timed out; 1x server:Moved:1090; 1x server:Moved:1222; 1x server:Moved:1283; 1x server:Moved:1415; 1x server:Moved:1940; 1x server:Moved:2182; 1x server:Moved:304; 1x server:Moved:3882; 1x server:Moved:436; 1x server:Moved:4369; 1x server:Moved:4501; 1x server:Moved:4675; 1x server:Moved:4807; 1x server:Moved:5351; 1x server:Moved:5410; 1x server:Moved:610
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/A5-20261020-170045
+== A6: docker restart of master dc1-s1 (back within node-timeout)
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: docker restart of master dc1-s1 (back within node-timeout)
+t=  6.0s   restart: rc-dc1-s1
+t= 25.0s heal
+t= 40.0s load finished
+t= 40.7s cluster healthy
+total: 14719 ok, 16 errors, 0 stale reads, 0 shed, max latency 1281.5ms
+s1: 16 errors between t=8s and t=8s (1 seconds with errors, 1 of them with no ok)
+errors: 16x server:ClusterDown:The
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/A6-20261020-170138
+== A7: manual CLUSTER FAILOVER to replica dc2-s1
+t=  0.0s load started: rcc --nodelay load --duration 35
+t=  5.0s incident: manual CLUSTER FAILOVER to replica dc2-s1
+t=  5.0s   OK
+t= 20.0s heal
+t= 35.1s load finished
+t= 36.3s cluster healthy
+total: 14016 ok, 0 errors, 0 stale reads, 0 shed, max latency 5.3ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/A7-20261020-170220
+== A8: CLIENT PAUSE WRITE 30s on master dc1-s1 (slow node, bus alive)
+t=  0.0s load started: rcc --nodelay load --duration 50 --mode mixed
+t=  5.0s incident: CLIENT PAUSE WRITE 30s on master dc1-s1 (slow node, bus alive)
+t=  5.0s   OK
+t= 35.0s heal
+t= 35.0s   OK
+t= 50.0s load finished
+t= 52.1s cluster healthy
+total: 8353 ok, 144 errors, 0 stale reads, 0 shed, max latency 2524.7ms
+s1: 144 errors between t=9s and t=34s (12 seconds with errors, 12 of them with no ok)
+errors: 144x io:timed out
+verify: 752 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/A8-20261020-170258
+== A9: busy Lua script for 15s on master dc1-s1 (blocks clients and the bus)
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: busy Lua script for 15s on master dc1-s1 (blocks clients and the bus)
+t= 19.6s   1
+t= 25.0s heal
+t= 40.0s load finished
+t= 41.6s cluster healthy
+total: 12836 ok, 1282 errors, 0 stale reads, 0 shed, max latency 5.5ms
+s1: 1282 errors between t=9s and t=20s (11 seconds with errors, 10 of them with no ok)
+errors: 1266x Extension; 16x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/A9-20261020-170352
+== D4: split brain: master dc1-s1 cut from all nodes but still reachable by the client
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: split brain: master dc1-s1 cut from all nodes but still reachable by the client
+t=  5.0s   cut dc1-s1 <-> dc1-s2,dc1-s3,dc2,dc3
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 50.0s load finished
+t= 52.0s cluster healthy
+total: 10445 ok, 123 errors, 0 stale reads, 0 shed, max latency 2563.1ms
+s1: 123 errors between t=15s and t=37s (13 seconds with errors, 11 of them with no ok)
+errors: 123x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/D4-20261020-170435

@@ -1,0 +1,102 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 2.193301ms
+t=  0.0s HEAL mode=Both after=3 interval=3s; 6 replicas known
+t=  0.0s run 1792528784: mode=Txn 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792528784:
+t=  1.0s ok=400  err=0    p50=  0.46ms p99=   0.75ms max=   0.83ms s1=134/0 s2=132/0 s3=134/0 
+t=  2.0s ok=400  err=0    p50=  0.43ms p99=   0.67ms max=   0.90ms s1=136/0 s2=129/0 s3=135/0 
+t=  3.0s ok=400  err=0    p50=  0.42ms p99=   0.56ms max=   0.59ms s1=132/0 s2=137/0 s3=131/0 
+t=  4.0s ok=400  err=0    p50=  0.41ms p99=   0.57ms max=   0.61ms s1=145/0 s2=125/0 s3=130/0 
+t=  5.0s ok=400  err=0    p50=  0.43ms p99=   0.57ms max=   0.58ms s1=131/0 s2=135/0 s3=134/0 
+t=  5.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t=  5.0s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: Connection refused (os error 111)
+t=  5.0s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: Connection refused (os error 111)
+t=  5.0s first 'server:ExecAbort:[(Index' on s2: Transaction aborted: [(Index 0, error: Moved: 9539 10.77.22.10:6379), (Index 1, error: Moved: 9539 10.77.22.10:6379), (Index 2, error: Moved: 9539 10.77.22.10:6379)]
+t=  5.0s HEAL s2 failing (3 strikes): Both
+t=  5.0s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: Connection refused (os error 111)
+t=  5.0s LOG WARN async cluster client recovery: beginning slot refresh
+t=  5.0s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: Connection refused (os error 111)
+t=  5.0s LOG INFO async cluster client recovery: slot refresh complete
+t=  6.0s ok=269  err=131  p50=  0.43ms p99=   0.74ms max=   0.80ms s1=134/0 s2=0/131 s3=135/0 131x server:ExecAbort:[(Index
+t=  6.1s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  6.1s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t=  6.3s LOG WARN async cluster client recovery: beginning slot refresh
+t=  7.0s ok=86   err=42   p50=  0.43ms p99=   0.51ms max=   0.51ms s1=44/0 s2=0/42 s3=42/0 42x server:ExecAbort:[(Index
+t=  7.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  7.3s LOG INFO async cluster client recovery: slot refresh complete
+t=  7.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  7.3s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t=  7.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  7.3s HEAL poke s2 via 10.77.12.10:6379: io:timed out in 2284ms
+t=  7.3s LOG WARN async cluster client recovery: beginning slot refresh
+t=  8.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  8.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  8.3s LOG INFO async cluster client recovery: slot refresh complete
+t=  8.3s LOG WARN async cluster client recovery: beginning slot refresh
+t=  9.0s ok=12   err=6    p50=1965.14ms p99=1965.22ms max=1965.22ms s1=6/0 s2=0/6 s3=6/0 6x server:ExecAbort:[(Index
+t=  9.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  9.3s LOG INFO async cluster client recovery: slot refresh complete
+t=  9.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  9.3s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t=  9.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  9.3s LOG WARN async cluster client recovery: beginning slot refresh
+t= 10.0s ok=11   err=3    p50=1002.25ms p99=1002.28ms max=1002.28ms s1=6/0 s2=0/3 s3=5/0 3x server:ExecAbort:[(Index
+t= 10.3s HEAL poke s2 via 10.77.32.10:6379: io:timed out in 3001ms
+t= 10.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 10.3s LOG INFO async cluster client recovery: slot refresh complete
+t= 11.0s ok=203  err=101  p50=  0.40ms p99=1002.64ms max=1969.51ms s1=100/0 s2=0/101 s3=103/0 101x server:ExecAbort:[(Index
+t= 11.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 11.3s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 12.0s ok=266  err=134  p50=  0.43ms p99=   0.57ms max=   0.60ms s1=132/0 s2=0/134 s3=134/0 134x server:ExecAbort:[(Index
+t= 13.0s ok=88   err=312  p50=  0.42ms p99=   0.54ms max=   0.56ms s1=48/98 s2=0/127 s3=40/87 312x server:ExecAbort:[(Index
+t= 13.1s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 13.1s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 13.3s HEAL s2 still failing after poke; rebuilding
+t= 13.3s LOG DEBUG Received request to reconnect to initial nodes
+t= 14.0s ok=280  err=120  p50=  0.43ms p99=   0.66ms max=   0.74ms s1=131/0 s2=15/120 s3=134/0 120x server:ExecAbort:[(Index
+t= 14.3s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 14.3s LOG DEBUG Failed to connect to initial node: timed out
+t= 14.3s HEAL rebuilt connection in 1002ms
+t= 15.0s ok=361  err=39   p50=  0.41ms p99=   0.59ms max=   0.61ms s1=135/0 s2=94/39 s3=132/0 39x server:ExecAbort:[(Index
+t= 16.0s ok=400  err=0    p50=  0.39ms p99=   0.54ms max=   0.58ms s1=135/0 s2=129/0 s3=136/0 
+t= 17.0s ok=400  err=0    p50=  0.39ms p99=   0.53ms max=   0.56ms s1=132/0 s2=134/0 s3=134/0 
+t= 18.0s ok=400  err=0    p50=  0.40ms p99=   0.54ms max=   0.55ms s1=144/0 s2=127/0 s3=129/0 
+t= 19.0s ok=400  err=0    p50=  0.39ms p99=   0.55ms max=   0.59ms s1=133/0 s2=134/0 s3=133/0 
+t= 20.0s ok=400  err=0    p50=  0.40ms p99=   0.57ms max=   0.60ms s1=134/0 s2=133/0 s3=133/0 
+t= 21.0s ok=400  err=0    p50=  0.39ms p99=   0.52ms max=   0.56ms s1=135/0 s2=131/0 s3=134/0 
+t= 22.0s ok=400  err=0    p50=  0.40ms p99=   0.53ms max=   0.57ms s1=132/0 s2=133/0 s3=135/0 
+t= 23.0s ok=400  err=0    p50=  0.41ms p99=   0.60ms max=   0.64ms s1=146/0 s2=125/0 s3=129/0 
+t= 24.0s ok=400  err=0    p50=  0.39ms p99=   0.53ms max=   0.57ms s1=131/0 s2=136/0 s3=133/0 
+t= 25.0s ok=400  err=0    p50=  0.39ms p99=   0.54ms max=   0.59ms s1=134/0 s2=131/0 s3=135/0 
+t= 26.0s ok=400  err=0    p50=  0.40ms p99=   0.58ms max=   0.63ms s1=135/0 s2=133/0 s3=132/0 
+t= 27.0s ok=400  err=0    p50=  0.37ms p99=   0.54ms max=   0.56ms s1=132/0 s2=134/0 s3=134/0 
+t= 28.0s ok=400  err=0    p50=  0.40ms p99=   0.59ms max=   0.60ms s1=147/0 s2=123/0 s3=130/0 
+t= 29.0s ok=400  err=0    p50=  0.40ms p99=   0.56ms max=   0.81ms s1=129/0 s2=137/0 s3=134/0 
+t= 30.0s ok=400  err=0    p50=  0.38ms p99=   0.60ms max=   0.62ms s1=136/0 s2=130/0 s3=134/0 
+t= 31.0s ok=400  err=0    p50=  0.39ms p99=   0.55ms max=   0.57ms s1=135/0 s2=134/0 s3=131/0 
+t= 32.0s ok=400  err=0    p50=  0.39ms p99=   0.54ms max=   0.61ms s1=133/0 s2=132/0 s3=135/0 
+t= 33.0s ok=400  err=0    p50=  0.40ms p99=   0.58ms max=   0.61ms s1=143/0 s2=125/0 s3=132/0 
+t= 34.0s ok=400  err=0    p50=  0.39ms p99=   1.02ms max=   1.10ms s1=129/0 s2=137/0 s3=134/0 
+t= 35.0s ok=400  err=0    p50=  0.38ms p99=   0.52ms max=   0.56ms s1=139/0 s2=129/0 s3=132/0 
+t= 36.0s ok=400  err=0    p50=  0.40ms p99=   0.57ms max=   0.64ms s1=134/0 s2=136/0 s3=130/0 
+t= 37.0s ok=400  err=0    p50=  0.39ms p99=   0.51ms max=   0.54ms s1=134/0 s2=132/0 s3=134/0 
+t= 38.0s ok=400  err=0    p50=  0.40ms p99=   0.55ms max=   0.69ms s1=142/0 s2=124/0 s3=134/0 
+t= 39.0s ok=400  err=0    p50=  0.40ms p99=   0.54ms max=   0.57ms s1=127/0 s2=138/0 s3=135/0 
+t= 40.0s ok=400  err=0    p50=  0.40ms p99=   0.54ms max=   0.56ms s1=141/0 s2=128/0 s3=131/0 
+t= 41.0s ok=400  err=0    p50=  0.40ms p99=   0.90ms max=   0.95ms s1=136/0 s2=136/0 s3=128/0 
+t= 42.0s ok=400  err=0    p50=  0.43ms p99=   0.61ms max=   0.72ms s1=132/0 s2=134/0 s3=134/0 
+t= 43.0s ok=400  err=0    p50=  0.41ms p99=   0.56ms max=   0.59ms s1=140/0 s2=123/0 s3=137/0 
+t= 44.0s ok=400  err=0    p50=  0.40ms p99=   0.66ms max=   0.68ms s1=128/0 s2=137/0 s3=135/0 
+t= 45.0s ok=400  err=0    p50=  0.40ms p99=   0.59ms max=   0.71ms s1=143/0 s2=128/0 s3=129/0 
+t= 46.0s ok=400  err=0    p50=  0.41ms p99=   0.56ms max=   0.61ms s1=137/0 s2=135/0 s3=128/0 
+t= 47.0s ok=400  err=0    p50=  0.41ms p99=   0.55ms max=   0.59ms s1=130/0 s2=135/0 s3=135/0 
+t= 48.0s ok=400  err=0    p50=  0.40ms p99=   3.88ms max=   3.92ms s1=140/0 s2=124/0 s3=136/0 
+t= 49.0s ok=400  err=0    p50=  0.41ms p99=   0.62ms max=   0.69ms s1=128/0 s2=138/0 s3=134/0 
+t= 50.0s ok=400  err=0    p50=  0.40ms p99=   0.58ms max=   0.62ms s1=145/0 s2=124/0 s3=131/0 
+t= 50.0s ok=16   err=0    p50=  0.48ms p99=   0.52ms max=   0.52ms s1=5/0 s2=7/0 s3=4/0 
+total: 17592 ok, 888 errors, 0 stale reads, 0 shed, max latency 1969.5ms
+s1: 98 errors between t=13s and t=13s (1 seconds with errors, 0 of them with no ok)
+s2: 703 errors between t=6s and t=15s (9 seconds with errors, 7 of them with no ok)
+s3: 87 errors between t=13s and t=13s (1 seconds with errors, 0 of them with no ok)
+errors: 888x server:ExecAbort:[(Index
+heal: 2 pokes, 1 rebuilds
+verify: 3000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

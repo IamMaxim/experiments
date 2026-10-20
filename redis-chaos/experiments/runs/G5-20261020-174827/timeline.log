@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --concurrency-limit 8 load --duration 50 --open-loop
+t=  5.0s incident: blackhole dc1-s1, open-loop load, per-node concurrency limit 8
+t=  5.1s   isolated dc1-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 60.0s load finished
+t= 61.7s cluster healthy

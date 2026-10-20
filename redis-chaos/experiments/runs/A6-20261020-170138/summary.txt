@@ -1,0 +1,4 @@
+total: 14719 ok, 16 errors, 0 stale reads, 0 shed, max latency 1281.5ms
+s1: 16 errors between t=8s and t=8s (1 seconds with errors, 1 of them with no ok)
+errors: 16x server:ClusterDown:The
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

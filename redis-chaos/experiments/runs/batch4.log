@@ -1,0 +1,182 @@
+== G1: blackhole dc1-s1 with library defaults: 16 retries, overall timeout = response timeout
+t=  0.0s load started: rcc --nodelay --retries 16 --overall-library-default load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with library defaults: 16 retries, overall timeout = response timeout
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 62.0s load finished
+t= 63.4s cluster healthy
+total: 3342 ok, 674 errors, 0 stale reads, 0 shed, max latency 8.8ms
+s1: 663 errors between t=7s and t=51s (45 seconds with errors, 45 of them with no ok)
+s2: 7 errors between t=14s and t=14s (1 seconds with errors, 0 of them with no ok)
+s3: 4 errors between t=14s and t=14s (1 seconds with errors, 0 of them with no ok)
+errors: 674x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/G1-20261020-174407
+== G2: blackhole dc1-s1 with 16 retries and no overall timeout
+t=  0.0s load started: rcc --nodelay --retries 16 --overall-timeout-ms 0 load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with 16 retries and no overall timeout
+t=  5.1s   isolated dc1-s1
+t= 35.0s heal
+t= 35.7s   healed everything
+t= 60.4s load finished
+t= 61.1s cluster healthy
+total: 2134 ok, 33 errors, 0 stale reads, 0 shed, max latency 17239.3ms
+s1: 33 errors between t=25s and t=60s (5 seconds with errors, 4 of them with no ok)
+errors: 32x io:timed out; 1x server:Moved:3202
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/G2-20261020-174516
+== G3: blackhole dc1-s1, mixed load, reads from replicas
+t=  0.0s load started: rcc --nodelay --read-replicas load --duration 50 --mode mixed
+t=  5.0s incident: blackhole dc1-s1, mixed load, reads from replicas
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 53.0s load finished
+t= 53.9s cluster healthy
+total: 3158 ok, 234 errors, 0 stale reads, 0 shed, max latency 4.2ms
+s1: 234 errors between t=9s and t=53s (33 seconds with errors, 8 of them with no ok)
+errors: 234x io:timed out
+verify: 752 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/G3-20261020-174622
+== G4: blackhole dc1-s1, open-loop load (no head-of-line blocking)
+t=  0.0s load started: rcc --nodelay load --duration 50 --open-loop
+t=  5.0s incident: blackhole dc1-s1, open-loop load (no head-of-line blocking)
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 58.4s load finished
+t= 60.7s cluster healthy
+total: 16819 ok, 3076 errors, 0 stale reads, 89 shed, max latency 1286.0ms
+s1: 3076 errors between t=9s and t=53s (42 seconds with errors, 42 of them with no ok)
+errors: 3076x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/G4-20261020-174721
+== G5: blackhole dc1-s1, open-loop load, per-node concurrency limit 8
+t=  0.0s load started: rcc --nodelay --concurrency-limit 8 load --duration 50 --open-loop
+t=  5.0s incident: blackhole dc1-s1, open-loop load, per-node concurrency limit 8
+t=  5.1s   isolated dc1-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 60.0s load finished
+t= 61.7s cluster healthy
+total: 16846 ok, 3114 errors, 0 stale reads, 16 shed, max latency 1286.6ms
+s1: 3114 errors between t=9s and t=53s (40 seconds with errors, 40 of them with no ok)
+errors: 3114x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/G5-20261020-174827
+== G6: blackhole dc1-s1 with TCP_USER_TIMEOUT 2s
+t=  0.0s load started: rcc --nodelay --tcp-user-timeout-ms 2000 load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with TCP_USER_TIMEOUT 2s
+t=  5.1s   isolated dc1-s1
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 50.0s load finished
+t= 50.7s cluster healthy
+total: 16691 ok, 22 errors, 0 stale reads, 0 shed, max latency 2283.6ms
+s1: 22 errors between t=8s and t=13s (4 seconds with errors, 4 of them with no ok)
+errors: 15x io:timed out; 1x server:Moved:1582; 1x server:Moved:2518; 1x server:Moved:3383; 1x server:Moved:3706; 1x server:Moved:3753; 1x server:Moved:4635; 1x server:Moved:5427
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/G6-20261020-174933
+== G7: blackhole dc1-s1 with TCP keepalive 1s
+t=  0.0s load started: rcc --nodelay --keepalive-ms 1000 load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with TCP keepalive 1s
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 58.4s load finished
+t= 58.8s cluster healthy
+total: 2435 ok, 240 errors, 0 stale reads, 0 shed, max latency 4.5ms
+s1: 240 errors between t=9s and t=51s (19 seconds with errors, 19 of them with no ok)
+errors: 240x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/G7-20261020-175029
+== H1: MULTI/EXEC transactions while master dc2-s2 is killed
+t=  0.0s load started: rcc --nodelay load --duration 50 --mode txn
+t=  5.0s incident: MULTI/EXEC transactions while master dc2-s2 is killed
+t=  5.1s   kill: rc-dc2-s2
+t= 35.0s heal
+t= 35.1s   start: rc-dc2-s2
+t= 50.1s load finished
+t= 52.6s cluster healthy
+total: 14271 ok, 5745 errors, 0 stale reads, 0 shed, max latency 5.9ms
+s1: 97 errors between t=12s and t=13s (2 seconds with errors, 0 of them with no ok)
+s2: 5546 errors between t=6s and t=50s (46 seconds with errors, 21 of them with no ok)
+s3: 102 errors between t=12s and t=13s (2 seconds with errors, 0 of them with no ok)
+errors: 5745x server:ExecAbort:[(Index
+verify: 3000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/H1-20261020-175133
+== H2: pipelines while master dc2-s2 is killed
+t=  0.0s load started: rcc --nodelay load --duration 50 --mode pipe
+t=  5.0s incident: pipelines while master dc2-s2 is killed
+t=  5.1s   kill: rc-dc2-s2
+t= 35.0s heal
+t= 35.1s   start: rc-dc2-s2
+t= 50.1s load finished
+t= 52.3s cluster healthy
+total: 16241 ok, 29 errors, 0 stale reads, 0 shed, max latency 2287.5ms
+s2: 28 errors between t=9s and t=16s (7 seconds with errors, 5 of them with no ok)
+s3: 1 errors between t=16s and t=16s (1 seconds with errors, 0 of them with no ok)
+errors: 29x io:timed out
+verify: 5000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/H2-20261020-175231
+== H3: multi-slot MSET (fan-out) while master dc2-s2 is killed
+t=  0.0s load started: rcc --nodelay load --duration 50 --mode fanout
+t=  5.0s incident: multi-slot MSET (fan-out) while master dc2-s2 is killed
+t=  5.1s   kill: rc-dc2-s2
+t= 35.0s heal
+t= 35.1s   start: rc-dc2-s2
+t= 50.0s load finished
+t= 51.5s cluster healthy
+total: 16736 ok, 32 errors, 0 stale reads, 0 shed, max latency 1282.3ms
+fan: 32 errors between t=9s and t=12s (2 seconds with errors, 2 of them with no ok)
+errors: 32x io:timed out
+verify: 3000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/H3-20261020-175329
+== I1: new connections while seed dc1-s1 is blackholed
+t=  0.0s load started: rcc --nodelay connect-probe --count 40 --interval-ms 1000
+t=  5.0s incident: new connections while seed dc1-s1 is blackholed
+t=  5.0s   isolated dc1-s1
+t= 25.0s heal
+t= 26.0s   healed everything
+t= 39.0s load finished
+t= 39.4s cluster healthy
+run: experiments/runs/I1-20261020-175425
+== I2: new connections while seeds dc1-s1 and dc2-s2 reject (ICMP)
+t=  0.0s load started: rcc --nodelay connect-probe --count 40 --interval-ms 1000
+t=  5.0s incident: new connections while seeds dc1-s1 and dc2-s2 reject (ICMP)
+t=  5.2s   cut client <-> dc1-s1,dc2-s2
+t= 25.0s heal
+t= 26.4s   healed everything
+t= 39.0s load finished
+t= 41.3s cluster healthy
+run: experiments/runs/I2-20261020-175509
+== I3: new connections while the client cannot reach any seed (cluster healthy)
+t=  0.0s load started: rcc --nodelay connect-probe --count 40 --interval-ms 1000
+t=  5.0s incident: new connections while the client cannot reach any seed (cluster healthy)
+t=  5.1s   cut client <-> dc1-s1,dc2-s2,dc3-s3
+t= 25.0s heal
+t= 25.7s   healed everything
+t= 39.0s load finished
+t= 40.1s cluster healthy
+run: experiments/runs/I3-20261020-175557
+== I4: new connections while cluster_state is fail (dc1 and dc2 isolated)
+t=  0.0s load started: rcc --nodelay connect-probe --count 45 --interval-ms 1000
+t=  5.0s incident: new connections while cluster_state is fail (dc1 and dc2 isolated)
+t=  5.1s   isolated dc1
+t=  5.2s   isolated dc2
+t= 30.0s heal
+t= 31.3s   healed everything
+t= 44.0s load finished
+t= 46.3s cluster healthy
+t= 76.2s rebalance failed
+run: experiments/runs/I4-20261020-175643
+== I5: 50 new connections per second while master dc2-s2 is killed
+t=  0.0s load started: rcc --nodelay connect-probe --count 40 --interval-ms 1000 --parallel 50
+t=  5.0s incident: 50 new connections per second while master dc2-s2 is killed
+t=  5.2s   kill: rc-dc2-s2
+t= 25.0s heal
+t= 25.2s   start: rc-dc2-s2
+t= 39.0s load finished
+t= 40.6s cluster healthy
+run: experiments/runs/I5-20261020-175802

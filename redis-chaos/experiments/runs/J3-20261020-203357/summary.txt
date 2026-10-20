@@ -1,0 +1,5 @@
+total: 28743 ok, 27 errors, 0 stale reads, 0 shed, max latency 2882.7ms
+s1: 25 errors between t=9s and t=15s (4 seconds with errors, 2 of them with no ok)
+s2: 2 errors between t=15s and t=15s (1 seconds with errors, 0 of them with no ok)
+errors: 27x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

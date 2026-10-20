@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --retries 16 --overall-timeout-ms 0 load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with 16 retries and no overall timeout
+t=  5.1s   isolated dc1-s1
+t= 35.0s heal
+t= 35.7s   healed everything
+t= 60.4s load finished
+t= 61.1s cluster healthy

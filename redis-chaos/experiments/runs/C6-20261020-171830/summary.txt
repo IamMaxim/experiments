@@ -1,0 +1,4 @@
+total: 4408 ok, 301 errors, 0 stale reads, 0 shed, max latency 2746.9ms
+s1: 301 errors between t=9s and t=64s (33 seconds with errors, 32 of them with no ok)
+errors: 301x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

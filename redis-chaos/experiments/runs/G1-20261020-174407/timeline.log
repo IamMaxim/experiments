@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --retries 16 --overall-library-default load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with library defaults: 16 retries, overall timeout = response timeout
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 62.0s load finished
+t= 63.4s cluster healthy

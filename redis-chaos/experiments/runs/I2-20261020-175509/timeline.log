@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay connect-probe --count 40 --interval-ms 1000
+t=  5.0s incident: new connections while seeds dc1-s1 and dc2-s2 reject (ICMP)
+t=  5.2s   cut client <-> dc1-s1,dc2-s2
+t= 25.0s heal
+t= 26.4s   healed everything
+t= 39.0s load finished
+t= 41.3s cluster healthy

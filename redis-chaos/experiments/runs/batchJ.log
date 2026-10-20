@@ -1,0 +1,89 @@
+== J1: self-heal POKE: blackhole master dc1-s1 for 60s (A1)
+t=  0.0s load started: rcc --nodelay --self-heal poke load --duration 80
+t=  5.0s incident: self-heal POKE: blackhole master dc1-s1 for 60s (A1)
+t=  5.0s   isolated dc1-s1
+t= 65.0s heal
+t= 65.5s   healed everything
+t= 80.0s load finished
+t= 81.2s cluster healthy
+total: 28693 ok, 25 errors, 0 stale reads, 0 shed, max latency 2963.2ms
+s1: 25 errors between t=9s and t=15s (3 seconds with errors, 2 of them with no ok)
+errors: 25x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J1-20261020-203105
+== J2: self-heal REBUILD: blackhole master dc1-s1 for 60s (A1)
+t=  0.0s load started: rcc --nodelay --self-heal rebuild load --duration 80
+t=  5.0s incident: self-heal REBUILD: blackhole master dc1-s1 for 60s (A1)
+t=  5.0s   isolated dc1-s1
+t= 65.0s heal
+t= 65.6s   healed everything
+t= 80.0s load finished
+t= 82.4s cluster healthy
+total: 28453 ok, 35 errors, 0 stale reads, 0 shed, max latency 2001.1ms
+s1: 34 errors between t=9s and t=15s (3 seconds with errors, 2 of them with no ok)
+s2: 1 errors between t=16s and t=16s (1 seconds with errors, 0 of them with no ok)
+errors: 35x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J2-20261020-203230
+== J3: self-heal BOTH: blackhole master dc1-s1 for 60s (A1)
+t=  0.0s load started: rcc --nodelay --self-heal both load --duration 80
+t=  5.0s incident: self-heal BOTH: blackhole master dc1-s1 for 60s (A1)
+t=  5.0s   isolated dc1-s1
+t= 65.0s heal
+t= 65.5s   healed everything
+t= 80.0s load finished
+t= 82.2s cluster healthy
+total: 28743 ok, 27 errors, 0 stale reads, 0 shed, max latency 2882.7ms
+s1: 25 errors between t=9s and t=15s (4 seconds with errors, 2 of them with no ok)
+s2: 2 errors between t=15s and t=15s (1 seconds with errors, 0 of them with no ok)
+errors: 27x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J3-20261020-203357
+== J4: self-heal BOTH: SIGSTOP master dc3-s3 (A4)
+t=  0.0s load started: rcc --nodelay --self-heal both load --duration 50
+t=  5.0s incident: self-heal BOTH: SIGSTOP master dc3-s3 (A4)
+t=  5.0s   pause: rc-dc3-s3
+t= 35.0s heal
+t= 35.0s   unpause: rc-dc3-s3
+t= 50.0s load finished
+t= 51.0s cluster healthy
+total: 17240 ok, 22 errors, 0 stale reads, 0 shed, max latency 2964.6ms
+s3: 22 errors between t=9s and t=14s (3 seconds with errors, 2 of them with no ok)
+errors: 22x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J4-20261020-203524
+== J5: self-heal BOTH: CLIENT PAUSE WRITE 30s on dc1-s1 (A8)
+t=  0.0s load started: rcc --nodelay --self-heal both load --duration 50 --mode mixed
+t=  5.0s incident: self-heal BOTH: CLIENT PAUSE WRITE 30s on dc1-s1 (A8)
+t=  5.0s   OK
+t= 35.0s heal
+t= 35.0s   OK
+t= 50.0s load finished
+t= 50.7s cluster healthy
+total: 8372 ok, 140 errors, 0 stale reads, 0 shed, max latency 2921.1ms
+s1: 140 errors between t=9s and t=34s (9 seconds with errors, 8 of them with no ok)
+errors: 140x io:timed out
+verify: 752 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J5-20261020-203620
+== J6: self-heal BOTH, all 9 seeds: client cut from seed masters, masters moved (D5)
+t=  0.0s load started: rcc --nodelay --self-heal both --seeds 10.77.11.10:6379,10.77.12.10:6379,10.77.13.10:6379,10.77.21.10:6379,10.77.22.10:6379,10.77.23.10:6379,10.77.31.10:6379,10.77.32.10:6379,10.77.33.10:6379 load --duration 60
+t=  5.0s incident: self-heal BOTH, all 9 seeds: client cut from seed masters, masters moved (D5)
+t=  5.0s   cut client <-> dc1-s1,dc2-s2,dc3-s3
+t= 15.1s   OK
+t= 15.1s   OK
+t= 15.1s   OK
+t= 45.0s heal
+t= 45.5s   healed everything
+t= 60.0s load finished
+t= 60.8s cluster healthy
+t= 91.4s rebalance failed
+total: 19408 ok, 48 errors, 0 stale reads, 0 shed, max latency 2568.9ms
+s1: 19 errors between t=9s and t=15s (3 seconds with errors, 3 of them with no ok)
+s2: 13 errors between t=9s and t=15s (3 seconds with errors, 3 of them with no ok)
+s3: 16 errors between t=9s and t=15s (3 seconds with errors, 3 of them with no ok)
+errors: 48x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J6-20261020-203714
+== J7: self-heal BOTH: MULTI/EXEC while master dc2-s2 is killed (H1)
+cluster not healthy before J7
+batchJ exit 1

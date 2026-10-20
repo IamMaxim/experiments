@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: client cut off from dc1 only; cluster healthy
+t=  5.0s   cut client <-> dc1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 58.5s load finished
+t= 59.3s cluster healthy

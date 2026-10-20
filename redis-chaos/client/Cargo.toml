@@ -1,0 +1,22 @@
+[package]
+name = "rcc"
+version = "0.1.0"
+edition = "2024"
+description = "redis-rs cluster client for the redis-chaos lab"
+publish = false
+
+# Standalone: not part of the redis-rs workspace next door.
+[workspace]
+
+[dependencies]
+redis = { path = "../redis-rs/redis", default-features = false, features = ["tokio-comp", "cluster-async"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "signal", "sync"] }
+clap = { version = "4", features = ["derive"] }
+anyhow = "1"
+log = "0.4"
+env_logger = "0.11"
+crc16 = "0.4"
+socket2 = { version = "0.6", features = ["all"] }
+
+[profile.release]
+debug = 1

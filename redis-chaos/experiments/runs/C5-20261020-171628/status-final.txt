@@ -1,0 +1,11 @@
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  replica* dc2-s1          ok     60                 
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     60                 
+dc1-s3   10.77.13.10  master*                  ok     60    10923-16383  
+dc2-s1   10.77.21.10  master*                  ok     60    0-5460       
+dc2-s2   10.77.22.10  master                   ok     60    5461-10922   
+dc2-s3   10.77.23.10  replica  dc1-s3          ok     60                 
+dc3-s1   10.77.31.10  replica  dc2-s1          ok     60                 
+dc3-s2   10.77.32.10  replica  dc3-s3          ok     60                 
+dc3-s3   10.77.33.10  replica* dc1-s3          ok     60                 
+(* = role differs from the designed layout; run `chaos rebalance` once healthy)

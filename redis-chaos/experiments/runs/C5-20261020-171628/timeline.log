@@ -1,0 +1,11 @@
+t=  0.0s load started: rcc --nodelay load --duration 120
+t=  5.0s incident: rolling DC loss: dc1, then dc2, then dc3, 20s each with 15s gaps
+t=  5.0s   isolated dc1
+t= 25.7s   healed everything
+t= 40.8s   isolated dc2
+t= 61.5s   healed everything
+t= 76.6s   isolated dc3
+t=100.0s heal
+t=100.6s   healed everything
+t=120.0s load finished
+t=120.4s cluster healthy

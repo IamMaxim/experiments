@@ -1,0 +1,10 @@
+t=  0.0s load started: rcc --nodelay load --duration 60
+t=  5.0s incident: client cut from the 3 seed masters, then masters moved to the replicas
+t=  5.0s   cut client <-> dc1-s1,dc2-s2,dc3-s3
+t= 15.1s   OK
+t= 15.1s   OK
+t= 15.2s   OK
+t= 45.0s heal
+t= 45.6s   healed everything
+t= 60.0s load finished
+t= 60.6s cluster healthy

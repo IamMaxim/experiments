@@ -1,0 +1,14 @@
+total: 10452 ok, 125 errors, 0 stale reads, 0 shed, max latency 2563.3ms
+s1: 125 errors between t=15s and t=37s (12 seconds with errors, 10 of them with no ok)
+errors: 125x io:timed out
+verify: 9605 keys intact, 0 ahead (unacked write landed), 847 LOST acknowledged writes
+  lost rcc:1792516023:2018: acked 127, now None
+  lost rcc:1792516023:2020: acked 127, now None
+  lost rcc:1792516023:2021: acked 127, now None
+  lost rcc:1792516023:2024: acked 127, now None
+  lost rcc:1792516023:2025: acked 127, now None
+  lost rcc:1792516023:2028: acked 127, now None
+  lost rcc:1792516023:2029: acked 127, now None
+  lost rcc:1792516023:2032: acked 128, now None
+  lost rcc:1792516023:2033: acked 128, now None
+  lost rcc:1792516023:2036: acked 128, now None

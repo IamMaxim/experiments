@@ -1,0 +1,56 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 1.559847ms
+t=  0.0s run 1792517409: mode=Set 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792517409:
+t=  1.0s ok=400  err=0    p50=  0.45ms p99=   1.16ms max=   1.32ms s1=135/0 s2=131/0 s3=134/0 
+t=  2.0s ok=400  err=0    p50=  0.49ms p99=   2.12ms max=   2.26ms s1=130/0 s2=138/0 s3=132/0 
+t=  3.0s ok=400  err=0    p50=  0.46ms p99=   3.79ms max=   3.88ms s1=137/0 s2=127/0 s3=136/0 
+t=  4.0s ok=400  err=0    p50=  0.53ms p99=   3.33ms max=   3.45ms s1=126/0 s2=135/0 s3=139/0 
+t=  5.0s ok=400  err=0    p50=  0.53ms p99=   1.05ms max=   1.25ms s1=131/0 s2=134/0 s3=135/0 
+t=  6.0s ok=59   err=0    p50=  0.64ms p99= 901.61ms max= 901.63ms s1=14/0 s2=21/0 s3=24/0 
+t=  7.0s ok=55   err=0    p50=  0.28ms p99= 901.50ms max= 901.53ms s1=20/0 s2=19/0 s3=16/0 
+t=  8.0s ok=50   err=0    p50=  0.38ms p99= 921.05ms max= 921.05ms s1=18/0 s2=17/0 s3=15/0 
+t=  9.0s ok=50   err=0    p50=  0.31ms p99=2501.37ms max=2501.37ms s1=16/0 s2=18/0 s3=16/0 
+t= 10.0s ok=40   err=0    p50=  0.48ms p99= 900.96ms max= 900.96ms s1=17/0 s2=11/0 s3=12/0 
+t= 11.0s ok=43   err=0    p50=  0.28ms p99= 901.15ms max= 901.15ms s1=15/0 s2=15/0 s3=13/0 
+t= 12.0s ok=63   err=0    p50=  0.34ms p99= 902.22ms max= 902.23ms s1=17/0 s2=26/0 s3=20/0 
+t= 13.0s ok=35   err=0    p50=  0.46ms p99= 900.46ms max= 900.46ms s1=14/0 s2=8/0 s3=13/0 
+t= 14.0s ok=49   err=0    p50=  0.32ms p99= 902.71ms max= 902.71ms s1=19/0 s2=17/0 s3=13/0 
+t= 15.0s ok=64   err=0    p50=  0.30ms p99= 900.59ms max= 902.31ms s1=15/0 s2=22/0 s3=27/0 
+t= 16.0s ok=59   err=0    p50=  0.24ms p99= 900.41ms max= 900.41ms s1=16/0 s2=18/0 s3=25/0 
+t= 17.0s ok=50   err=0    p50=  0.25ms p99= 900.52ms max= 900.52ms s1=15/0 s2=17/0 s3=18/0 
+t= 18.0s ok=55   err=0    p50=  0.28ms p99= 900.38ms max= 900.38ms s1=17/0 s2=21/0 s3=17/0 
+t= 19.0s ok=49   err=0    p50=  0.34ms p99= 900.44ms max= 900.44ms s1=16/0 s2=16/0 s3=17/0 
+t= 20.0s ok=55   err=0    p50=  0.29ms p99= 900.47ms max= 900.49ms s1=16/0 s2=20/0 s3=19/0 
+t= 21.0s ok=34   err=0    p50=  0.32ms p99= 900.41ms max= 900.41ms s1=16/0 s2=8/0 s3=10/0 
+t= 22.0s ok=49   err=0    p50=  0.32ms p99= 900.58ms max= 900.58ms s1=16/0 s2=16/0 s3=17/0 
+t= 23.0s ok=49   err=0    p50=  0.32ms p99= 900.55ms max= 900.55ms s1=17/0 s2=17/0 s3=15/0 
+t= 24.0s ok=50   err=0    p50=  0.26ms p99= 900.39ms max= 900.39ms s1=16/0 s2=15/0 s3=19/0 
+t= 25.0s ok=45   err=0    p50=  0.30ms p99= 901.03ms max= 901.03ms s1=17/0 s2=17/0 s3=11/0 
+t= 26.0s ok=59   err=0    p50=  0.24ms p99= 900.38ms max= 900.38ms s1=16/0 s2=23/0 s3=20/0 
+t= 27.0s ok=54   err=0    p50=  0.33ms p99= 900.54ms max= 901.93ms s1=16/0 s2=20/0 s3=18/0 
+t= 28.0s ok=53   err=0    p50=  0.42ms p99= 900.88ms max= 901.64ms s1=17/0 s2=16/0 s3=20/0 
+t= 29.0s ok=39   err=0    p50=  0.43ms p99= 900.63ms max= 900.63ms s1=16/0 s2=12/0 s3=11/0 
+t= 30.0s ok=51   err=0    p50=  0.37ms p99= 901.12ms max= 901.12ms s1=20/0 s2=13/0 s3=18/0 
+t= 31.0s ok=46   err=0    p50=  0.38ms p99= 901.88ms max= 901.88ms s1=15/0 s2=17/0 s3=14/0 
+t= 32.0s ok=53   err=0    p50=  0.34ms p99= 900.57ms max= 900.63ms s1=17/0 s2=22/0 s3=14/0 
+t= 33.0s ok=56   err=0    p50=  0.36ms p99= 900.75ms max= 902.83ms s1=17/0 s2=16/0 s3=23/0 
+t= 34.0s ok=43   err=0    p50=  0.57ms p99= 901.19ms max= 901.19ms s1=18/0 s2=10/0 s3=15/0 
+t= 35.0s ok=55   err=0    p50=  0.31ms p99= 900.81ms max= 900.87ms s1=14/0 s2=20/0 s3=21/0 
+t= 36.0s ok=287  err=0    p50=  0.60ms p99= 900.42ms max= 900.63ms s1=96/0 s2=97/0 s3=94/0 
+t= 37.0s ok=384  err=0    p50=  0.50ms p99=   3.25ms max=   3.33ms s1=127/0 s2=132/0 s3=125/0 
+t= 38.0s ok=400  err=0    p50=  0.40ms p99=   0.71ms max=   0.81ms s1=133/0 s2=131/0 s3=136/0 
+t= 39.0s ok=400  err=0    p50=  0.43ms p99=   0.62ms max=   0.64ms s1=131/0 s2=130/0 s3=139/0 
+t= 40.0s ok=400  err=0    p50=  0.41ms p99=   3.06ms max=   3.10ms s1=133/0 s2=136/0 s3=131/0 
+t= 41.0s ok=400  err=0    p50=  0.40ms p99=   0.75ms max=   0.82ms s1=130/0 s2=130/0 s3=140/0 
+t= 42.0s ok=400  err=0    p50=  0.41ms p99=   2.84ms max=   2.95ms s1=133/0 s2=138/0 s3=129/0 
+t= 43.0s ok=400  err=0    p50=  0.46ms p99=   0.90ms max=   0.96ms s1=133/0 s2=131/0 s3=136/0 
+t= 44.0s ok=400  err=0    p50=  0.46ms p99=   3.01ms max=   3.10ms s1=131/0 s2=134/0 s3=135/0 
+t= 45.0s ok=400  err=0    p50=  0.40ms p99=   0.72ms max=   0.81ms s1=133/0 s2=131/0 s3=136/0 
+t= 46.0s ok=400  err=0    p50=  0.46ms p99=   2.26ms max=   2.32ms s1=129/0 s2=134/0 s3=137/0 
+t= 47.0s ok=400  err=0    p50=  0.46ms p99=   2.35ms max=   2.56ms s1=132/0 s2=137/0 s3=131/0 
+t= 48.0s ok=400  err=0    p50=  0.47ms p99=   0.76ms max=   0.80ms s1=140/0 s2=127/0 s3=133/0 
+t= 49.0s ok=400  err=0    p50=  0.39ms p99=   2.57ms max=   2.72ms s1=126/0 s2=138/0 s3=136/0 
+t= 50.0s ok=400  err=0    p50=  0.40ms p99=   1.90ms max=   1.95ms s1=133/0 s2=130/0 s3=137/0 
+t= 50.0s ok=16   err=0    p50=  0.57ms p99=   0.60ms max=   0.60ms s1=5/0 s2=5/0 s3=6/0 
+total: 9399 ok, 0 errors, 0 stale reads, 0 shed, max latency 2501.4ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

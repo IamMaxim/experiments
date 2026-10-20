@@ -1,0 +1,11 @@
+t=  0.0s load started: rcc --nodelay --self-heal both --seeds 10.77.11.10:6379,10.77.12.10:6379,10.77.13.10:6379,10.77.21.10:6379,10.77.22.10:6379,10.77.23.10:6379,10.77.31.10:6379,10.77.32.10:6379,10.77.33.10:6379 load --duration 60
+t=  5.0s incident: self-heal BOTH, all 9 seeds: client cut from seed masters, masters moved (D5)
+t=  5.0s   cut client <-> dc1-s1,dc2-s2,dc3-s3
+t= 15.1s   OK
+t= 15.1s   OK
+t= 15.1s   OK
+t= 45.0s heal
+t= 45.5s   healed everything
+t= 60.0s load finished
+t= 60.8s cluster healthy
+t= 91.4s rebalance failed

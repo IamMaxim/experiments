@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay connect-probe --count 40 --interval-ms 1000
+t=  5.0s incident: new connections while the client cannot reach any seed (cluster healthy)
+t=  5.1s   cut client <-> dc1-s1,dc2-s2,dc3-s3
+t= 25.0s heal
+t= 25.7s   healed everything
+t= 39.0s load finished
+t= 40.1s cluster healthy

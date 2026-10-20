@@ -1,0 +1,9 @@
+t=  0.0s load started: rcc --nodelay load --duration 45
+t=  5.0s incident: CLIENT KILL TYPE normal on every master, 4 times 5s apart
+t=  5.1s   killed clients on all masters
+t= 10.3s   killed clients on all masters
+t= 15.4s   killed clients on all masters
+t= 20.5s   killed clients on all masters
+t= 30.0s heal
+t= 45.0s load finished
+t= 47.1s cluster healthy

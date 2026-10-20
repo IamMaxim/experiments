@@ -1,0 +1,151 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 2.172026ms
+t=  0.0s run 1792518136: mode=Set 1 closed-loop workers 1 ops/s, 1000 keys, prefix rcc:1792518136:
+t=  1.0s ok=1    err=0    p50=  0.39ms p99=   0.39ms max=   0.39ms s1=0/0 s2=0/0 s3=1/0 
+t=  2.0s ok=1    err=0    p50=  0.46ms p99=   0.46ms max=   0.46ms s1=0/0 s2=0/0 s3=1/0 
+t=  3.0s ok=1    err=0    p50=  0.38ms p99=   0.38ms max=   0.38ms s1=0/0 s2=1/0 s3=0/0 
+t=  4.0s ok=1    err=0    p50=  0.58ms p99=   0.58ms max=   0.58ms s1=1/0 s2=0/0 s3=0/0 
+t=  5.0s ok=1    err=0    p50=  0.44ms p99=   0.44ms max=   0.44ms s1=0/0 s2=0/0 s3=1/0 
+t=  6.0s ok=1    err=0    p50=  0.47ms p99=   0.47ms max=   0.47ms s1=0/0 s2=0/0 s3=1/0 
+t=  6.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t=  6.0s LOG WARN ClusterConnInner: connection to 10.77.31.10:6379 lost; repairing in background
+t=  6.0s LOG WARN ClusterConnInner: connection to 10.77.21.10:6379 lost; repairing in background
+t=  6.0s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t=  6.0s first 'io:broken pipe' on s2: broken pipe
+t=  6.0s LOG INFO ClusterConnInner: reconnected to 10.77.31.10:6379 
+t=  6.0s LOG INFO ClusterConnInner: reconnected to 10.77.22.10:6379 
+t=  6.0s LOG INFO ClusterConnInner: reconnected to 10.77.11.10:6379 
+t=  6.0s LOG INFO ClusterConnInner: reconnected to 10.77.21.10:6379 
+t=  7.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/1 s3=0/0 1x io:broken pipe
+t=  8.0s ok=1    err=0    p50=  0.46ms p99=   0.46ms max=   0.46ms s1=1/0 s2=0/0 s3=0/0 
+t=  8.0s LOG WARN ClusterConnInner: connection to 10.77.33.10:6379 lost; repairing in background
+t=  8.0s LOG WARN ClusterConnInner: connection to 10.77.13.10:6379 lost; repairing in background
+t=  8.0s LOG WARN ClusterConnInner: connection to 10.77.32.10:6379 lost; repairing in background
+t=  8.0s LOG WARN ClusterConnInner: connection to 10.77.21.10:6379 lost; repairing in background
+t=  8.0s LOG INFO ClusterConnInner: reconnected to 10.77.32.10:6379 
+t=  8.0s LOG INFO ClusterConnInner: reconnected to 10.77.13.10:6379 
+t=  8.0s LOG INFO ClusterConnInner: reconnected to 10.77.21.10:6379 
+t=  8.0s LOG INFO ClusterConnInner: reconnected to 10.77.33.10:6379 
+t=  9.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/1 1x io:broken pipe
+t= 10.0s ok=1    err=0    p50=  0.55ms p99=   0.55ms max=   0.55ms s1=0/0 s2=0/0 s3=1/0 
+t= 10.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t= 10.0s LOG WARN ClusterConnInner: connection to 10.77.21.10:6379 lost; repairing in background
+t= 10.0s LOG WARN ClusterConnInner: connection to 10.77.31.10:6379 lost; repairing in background
+t= 10.0s LOG WARN ClusterConnInner: connection to 10.77.13.10:6379 lost; repairing in background
+t= 10.0s LOG INFO ClusterConnInner: reconnected to 10.77.31.10:6379 
+t= 10.0s LOG INFO ClusterConnInner: reconnected to 10.77.22.10:6379 
+t= 10.0s LOG INFO ClusterConnInner: reconnected to 10.77.21.10:6379 
+t= 10.0s LOG INFO ClusterConnInner: reconnected to 10.77.13.10:6379 
+t= 11.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/1 s3=0/0 1x io:broken pipe
+t= 11.0s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t= 11.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 11.0s LOG INFO async cluster client recovery: slot refresh complete
+t= 12.0s ok=1    err=0    p50=  1.77ms p99=   1.77ms max=   1.77ms s1=1/0 s2=0/0 s3=0/0 
+t= 13.0s ok=1    err=0    p50=  0.40ms p99=   0.40ms max=   0.40ms s1=0/0 s2=0/0 s3=1/0 
+t= 14.0s ok=1    err=0    p50=  0.47ms p99=   0.47ms max=   0.47ms s1=0/0 s2=0/0 s3=1/0 
+t= 14.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t= 14.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 14.0s LOG INFO async cluster client recovery: slot refresh complete
+t= 15.0s ok=1    err=0    p50=  2.03ms p99=   2.03ms max=   2.03ms s1=0/0 s2=1/0 s3=0/0 
+t= 16.0s ok=1    err=0    p50=  0.31ms p99=   0.31ms max=   0.31ms s1=1/0 s2=0/0 s3=0/0 
+t= 16.0s LOG WARN ClusterConnInner: connection to 10.77.33.10:6379 lost; repairing in background
+t= 16.0s LOG WARN ClusterConnInner: connection to 10.77.21.10:6379 lost; repairing in background
+t= 16.0s LOG WARN ClusterConnInner: connection to 10.77.31.10:6379 lost; repairing in background
+t= 16.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 16.0s first 'server:Moved:15194' on s3: Moved: 15194 10.77.33.10:6379
+t= 16.0s LOG INFO async cluster client recovery: slot refresh complete
+t= 17.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/1 1x server:Moved:15194
+t= 18.0s ok=1    err=0    p50=  0.50ms p99=   0.50ms max=   0.50ms s1=0/0 s2=0/0 s3=1/0 
+t= 18.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t= 18.0s LOG WARN ClusterConnInner: connection to 10.77.21.10:6379 lost; repairing in background
+t= 18.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 18.0s LOG INFO async cluster client recovery: slot refresh complete
+t= 19.0s ok=1    err=0    p50=  2.52ms p99=   2.52ms max=   2.52ms s1=0/0 s2=1/0 s3=0/0 
+t= 20.0s ok=1    err=0    p50=  0.39ms p99=   0.39ms max=   0.39ms s1=1/0 s2=0/0 s3=0/0 
+t= 21.0s ok=1    err=0    p50=  0.35ms p99=   0.35ms max=   0.35ms s1=1/0 s2=0/0 s3=0/0 
+t= 21.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t= 21.0s LOG WARN ClusterConnInner: connection to 10.77.32.10:6379 lost; repairing in background
+t= 21.0s LOG WARN ClusterConnInner: connection to 10.77.23.10:6379 lost; repairing in background
+t= 21.0s LOG WARN ClusterConnInner: connection to 10.77.31.10:6379 lost; repairing in background
+t= 21.0s LOG INFO ClusterConnInner: reconnected to 10.77.22.10:6379 
+t= 21.0s LOG INFO ClusterConnInner: reconnected to 10.77.31.10:6379 
+t= 21.0s LOG INFO ClusterConnInner: reconnected to 10.77.23.10:6379 
+t= 21.0s LOG INFO ClusterConnInner: reconnected to 10.77.32.10:6379 
+t= 22.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/1 s3=0/0 1x io:broken pipe
+t= 22.0s LOG WARN ClusterConnInner: connection to 10.77.33.10:6379 lost; repairing in background
+t= 22.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 22.0s LOG INFO async cluster client recovery: slot refresh complete
+t= 23.0s ok=1    err=0    p50=  1.99ms p99=   1.99ms max=   1.99ms s1=0/0 s2=0/0 s3=1/0 
+t= 24.0s ok=1    err=0    p50=  0.35ms p99=   0.35ms max=   0.35ms s1=0/0 s2=0/0 s3=1/0 
+t= 24.0s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t= 24.0s LOG WARN ClusterConnInner: connection to 10.77.31.10:6379 lost; repairing in background
+t= 24.0s LOG WARN ClusterConnInner: connection to 10.77.32.10:6379 lost; repairing in background
+t= 24.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t= 24.0s LOG INFO ClusterConnInner: reconnected to 10.77.22.10:6379 
+t= 24.0s LOG INFO ClusterConnInner: reconnected to 10.77.31.10:6379 
+t= 24.0s LOG INFO ClusterConnInner: reconnected to 10.77.32.10:6379 
+t= 24.0s LOG INFO ClusterConnInner: reconnected to 10.77.11.10:6379 
+t= 25.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/1 s2=0/0 s3=0/0 1x io:broken pipe
+t= 26.0s ok=1    err=0    p50=  0.37ms p99=   0.37ms max=   0.37ms s1=0/0 s2=1/0 s3=0/0 
+t= 26.0s LOG WARN ClusterConnInner: connection to 10.77.33.10:6379 lost; repairing in background
+t= 26.0s LOG WARN ClusterConnInner: connection to 10.77.21.10:6379 lost; repairing in background
+t= 26.0s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t= 26.0s LOG WARN ClusterConnInner: connection to 10.77.32.10:6379 lost; repairing in background
+t= 26.0s LOG INFO ClusterConnInner: reconnected to 10.77.33.10:6379 
+t= 26.0s LOG INFO ClusterConnInner: reconnected to 10.77.21.10:6379 
+t= 26.0s LOG INFO ClusterConnInner: reconnected to 10.77.11.10:6379 
+t= 26.0s LOG INFO ClusterConnInner: reconnected to 10.77.32.10:6379 
+t= 27.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/1 1x io:broken pipe
+t= 28.0s ok=1    err=0    p50=  0.50ms p99=   0.50ms max=   0.50ms s1=0/0 s2=0/0 s3=1/0 
+t= 28.0s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t= 28.0s LOG WARN ClusterConnInner: connection to 10.77.23.10:6379 lost; repairing in background
+t= 28.0s LOG WARN ClusterConnInner: connection to 10.77.12.10:6379 lost; repairing in background
+t= 28.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t= 28.0s LOG INFO ClusterConnInner: reconnected to 10.77.12.10:6379 
+t= 28.0s LOG INFO ClusterConnInner: reconnected to 10.77.23.10:6379 
+t= 28.0s LOG INFO ClusterConnInner: reconnected to 10.77.22.10:6379 
+t= 28.0s LOG INFO ClusterConnInner: reconnected to 10.77.11.10:6379 
+t= 29.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/1 s2=0/0 s3=0/0 1x io:broken pipe
+t= 30.0s ok=1    err=0    p50=  0.45ms p99=   0.45ms max=   0.45ms s1=0/0 s2=1/0 s3=0/0 
+t= 30.0s LOG WARN ClusterConnInner: connection to 10.77.33.10:6379 lost; repairing in background
+t= 30.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 30.0s LOG INFO async cluster client recovery: slot refresh complete
+t= 31.0s ok=1    err=0    p50=  2.78ms p99=   2.78ms max=   2.78ms s1=0/0 s2=0/0 s3=1/0 
+t= 32.0s ok=1    err=0    p50=  0.44ms p99=   0.44ms max=   0.44ms s1=0/0 s2=0/0 s3=1/0 
+t= 32.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t= 32.0s LOG WARN ClusterConnInner: connection to 10.77.21.10:6379 lost; repairing in background
+t= 32.0s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t= 32.0s LOG WARN ClusterConnInner: connection to 10.77.12.10:6379 lost; repairing in background
+t= 32.0s LOG INFO ClusterConnInner: reconnected to 10.77.11.10:6379 
+t= 32.0s LOG INFO ClusterConnInner: reconnected to 10.77.22.10:6379 
+t= 32.0s LOG INFO ClusterConnInner: reconnected to 10.77.12.10:6379 
+t= 32.0s LOG INFO ClusterConnInner: reconnected to 10.77.21.10:6379 
+t= 33.0s ok=0    err=1    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/1 s3=0/0 1x io:broken pipe
+t= 34.0s ok=1    err=0    p50=  0.42ms p99=   0.42ms max=   0.42ms s1=1/0 s2=0/0 s3=0/0 
+t= 34.0s LOG WARN ClusterConnInner: connection to 10.77.33.10:6379 lost; repairing in background
+t= 34.0s LOG WARN ClusterConnInner: connection to 10.77.32.10:6379 lost; repairing in background
+t= 34.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 34.0s LOG INFO async cluster client recovery: slot refresh complete
+t= 35.0s ok=1    err=0    p50=  1.84ms p99=   1.84ms max=   1.84ms s1=0/0 s2=0/0 s3=1/0 
+t= 36.0s ok=1    err=0    p50=  0.43ms p99=   0.43ms max=   0.43ms s1=0/0 s2=0/0 s3=1/0 
+t= 37.0s ok=1    err=0    p50=  0.56ms p99=   0.56ms max=   0.56ms s1=0/0 s2=1/0 s3=0/0 
+t= 38.0s ok=1    err=0    p50=  0.56ms p99=   0.56ms max=   0.56ms s1=1/0 s2=0/0 s3=0/0 
+t= 39.0s ok=1    err=0    p50=  0.41ms p99=   0.41ms max=   0.41ms s1=0/0 s2=0/0 s3=1/0 
+t= 40.0s ok=1    err=0    p50=  0.38ms p99=   0.38ms max=   0.38ms s1=0/0 s2=0/0 s3=1/0 
+t= 41.0s ok=1    err=0    p50=  0.44ms p99=   0.44ms max=   0.44ms s1=0/0 s2=1/0 s3=0/0 
+t= 42.0s ok=1    err=0    p50=  0.44ms p99=   0.44ms max=   0.44ms s1=0/0 s2=0/0 s3=1/0 
+t= 43.0s ok=1    err=0    p50=  0.39ms p99=   0.39ms max=   0.39ms s1=1/0 s2=0/0 s3=0/0 
+t= 44.0s ok=1    err=0    p50=  0.42ms p99=   0.42ms max=   0.42ms s1=1/0 s2=0/0 s3=0/0 
+t= 45.0s ok=1    err=0    p50=  0.41ms p99=   0.41ms max=   0.41ms s1=0/0 s2=1/0 s3=0/0 
+t= 46.0s ok=1    err=0    p50=  0.61ms p99=   0.61ms max=   0.61ms s1=0/0 s2=0/0 s3=1/0 
+t= 47.0s ok=1    err=0    p50=  0.62ms p99=   0.62ms max=   0.62ms s1=1/0 s2=0/0 s3=0/0 
+t= 48.0s ok=1    err=0    p50=  0.58ms p99=   0.58ms max=   0.58ms s1=1/0 s2=0/0 s3=0/0 
+t= 49.0s ok=1    err=0    p50=  0.33ms p99=   0.33ms max=   0.33ms s1=0/0 s2=1/0 s3=0/0 
+t= 50.0s ok=1    err=0    p50=  0.36ms p99=   0.36ms max=   0.36ms s1=0/0 s2=0/0 s3=1/0 
+t= 50.0s ok=1    err=0    p50=  0.39ms p99=   0.39ms max=   0.39ms s1=0/0 s2=1/0 s3=0/0 
+total: 42 ok, 9 errors, 0 stale reads, 0 shed, max latency 2.8ms
+s1: 2 errors between t=25s and t=29s (2 seconds with errors, 2 of them with no ok)
+s2: 4 errors between t=7s and t=33s (4 seconds with errors, 4 of them with no ok)
+s3: 3 errors between t=9s and t=27s (3 seconds with errors, 3 of them with no ok)
+errors: 8x io:broken pipe; 1x server:Moved:15194
+verify: 42 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

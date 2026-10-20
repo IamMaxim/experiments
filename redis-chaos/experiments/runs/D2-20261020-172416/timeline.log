@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: one-way: packets from master dc1-s1 to everyone are dropped
+t=  5.0s   cut dc1-s1 -> all,client (one way)
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 61.9s load finished
+t= 64.6s cluster healthy

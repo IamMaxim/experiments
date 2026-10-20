@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 80
+t=  5.0s incident: kill -9 master dc2-s2, leave it dead 60s
+t=  5.1s   kill: rc-dc2-s2
+t= 65.0s heal
+t= 65.1s   start: rc-dc2-s2
+t= 80.1s load finished
+t= 81.0s cluster healthy

@@ -1,0 +1,71 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 1.069213ms
+t=  0.0s run 1792516077: mode=Set 16 closed-loop workers 400 ops/s, 100000 keys, prefix rcc:1792516077:
+t=  1.0s ok=408  err=0    p50=  0.27ms p99=   0.86ms max=   0.88ms s1=133/0 s2=138/0 s3=137/0 
+t=  2.0s ok=400  err=0    p50=  0.26ms p99=   0.67ms max=   0.72ms s1=130/0 s2=139/0 s3=131/0 
+t=  3.0s ok=392  err=0    p50=  0.28ms p99=   1.06ms max=   1.16ms s1=124/0 s2=131/0 s3=137/0 
+t=  4.0s ok=400  err=0    p50=  0.28ms p99=   9.50ms max=   9.67ms s1=137/0 s2=138/0 s3=125/0 
+t=  5.0s ok=400  err=0    p50=  0.28ms p99=   0.58ms max=   0.76ms s1=134/0 s2=132/0 s3=134/0 
+t=  6.0s ok=408  err=0    p50=  0.27ms p99=   0.48ms max=   0.74ms s1=139/0 s2=132/0 s3=137/0 
+t=  7.0s ok=400  err=0    p50=  0.25ms p99=   0.64ms max=   0.94ms s1=134/0 s2=131/0 s3=135/0 
+t=  8.0s ok=400  err=0    p50=  0.27ms p99=   0.72ms max=   1.10ms s1=133/0 s2=134/0 s3=133/0 
+t=  9.0s ok=400  err=0    p50=  0.29ms p99=   0.78ms max=   0.81ms s1=125/0 s2=132/0 s3=143/0 
+t= 10.0s ok=400  err=0    p50=  0.32ms p99=   6.06ms max=   6.16ms s1=135/0 s2=132/0 s3=133/0 
+t= 11.0s ok=400  err=0    p50=  0.26ms p99=   0.46ms max=   0.53ms s1=137/0 s2=129/0 s3=134/0 
+t= 12.0s ok=400  err=0    p50=  0.25ms p99=   0.84ms max=   0.94ms s1=135/0 s2=130/0 s3=135/0 
+t= 13.0s ok=46   err=0    p50=  0.22ms p99=   0.41ms max=   0.41ms s1=9/0 s2=21/0 s3=16/0 
+t= 14.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 15.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 15.9s first 'server:ClusterDown:The' on s1: ClusterDown: The cluster is down
+t= 16.0s ok=17   err=10   p50=  0.29ms p99=   0.41ms max=   0.41ms s1=0/10 s2=7/0 s3=10/0 10x server:ClusterDown:The
+t= 17.0s ok=19   err=6    p50=  0.17ms p99=   0.25ms max=   0.25ms s1=0/6 s2=8/0 s3=11/0 6x server:ClusterDown:The
+t= 18.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 19.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 20.0s ok=23   err=14   p50=  0.17ms p99=   0.36ms max=   0.36ms s1=0/14 s2=10/0 s3=13/0 14x server:ClusterDown:The
+t= 21.0s ok=13   err=2    p50=  0.15ms p99=   0.28ms max=   0.28ms s1=0/2 s2=5/0 s3=8/0 2x server:ClusterDown:The
+t= 22.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 23.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 24.0s ok=35   err=14   p50=  0.19ms p99=   0.44ms max=   0.44ms s1=0/14 s2=18/0 s3=17/0 14x server:ClusterDown:The
+t= 25.0s ok=7    err=2    p50=  0.15ms p99=   0.22ms max=   0.22ms s1=0/2 s2=4/0 s3=3/0 2x server:ClusterDown:The
+t= 26.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 27.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 28.0s ok=30   err=16   p50=  0.17ms p99=   0.34ms max=   0.34ms s1=0/16 s2=12/0 s3=18/0 16x server:ClusterDown:The
+t= 29.0s ok=3    err=0    p50=  0.17ms p99=   0.18ms max=   0.18ms s1=0/0 s2=2/0 s3=1/0 
+t= 30.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 31.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 32.0s ok=34   err=16   p50=  0.22ms p99=   0.33ms max=   0.33ms s1=0/16 s2=19/0 s3=15/0 16x server:ClusterDown:The
+t= 33.0s ok=1    err=0    p50=  0.14ms p99=   0.14ms max=   0.14ms s1=0/0 s2=1/0 s3=0/0 
+t= 34.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 35.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 35.5s LOG WARN async cluster client recovery: beginning slot refresh
+t= 35.5s LOG INFO async cluster client recovery: slot refresh complete
+t= 36.0s ok=120  err=4    p50=  0.19ms p99=3845.39ms max=3845.92ms s1=50/4 s2=34/0 s3=36/0 4x server:ClusterDown:The
+t= 37.0s ok=355  err=0    p50=  0.23ms p99=   0.95ms max=1281.47ms s1=121/0 s2=112/0 s3=122/0 
+t= 38.0s ok=400  err=0    p50=  0.30ms p99=   4.48ms max=   4.59ms s1=132/0 s2=139/0 s3=129/0 
+t= 39.0s ok=392  err=0    p50=  0.28ms p99=   1.61ms max=   1.70ms s1=124/0 s2=131/0 s3=137/0 
+t= 40.0s ok=408  err=0    p50=  0.28ms p99=   1.14ms max=   1.22ms s1=137/0 s2=138/0 s3=133/0 
+t= 41.0s ok=400  err=0    p50=  0.28ms p99=   0.72ms max=   0.74ms s1=136/0 s2=139/0 s3=125/0 
+t= 42.0s ok=392  err=0    p50=  0.29ms p99=   0.80ms max=   0.81ms s1=128/0 s2=131/0 s3=133/0 
+t= 43.0s ok=408  err=0    p50=  0.28ms p99=   0.55ms max=   0.67ms s1=133/0 s2=136/0 s3=139/0 
+t= 44.0s ok=400  err=0    p50=  0.29ms p99=   0.57ms max=   0.60ms s1=138/0 s2=139/0 s3=123/0 
+t= 45.0s ok=392  err=0    p50=  0.28ms p99=   1.04ms max=   1.55ms s1=128/0 s2=129/0 s3=135/0 
+t= 46.0s ok=400  err=0    p50=  0.31ms p99=   1.59ms max=   1.82ms s1=133/0 s2=130/0 s3=137/0 
+t= 47.0s ok=408  err=0    p50=  0.30ms p99=   2.48ms max=   2.52ms s1=143/0 s2=142/0 s3=123/0 
+t= 48.0s ok=392  err=0    p50=  0.28ms p99=   0.68ms max=   0.73ms s1=136/0 s2=131/0 s3=125/0 
+t= 49.0s ok=408  err=0    p50=  0.28ms p99=   0.62ms max=   0.77ms s1=131/0 s2=141/0 s3=136/0 
+t= 50.0s ok=392  err=0    p50=  0.29ms p99=   1.00ms max=   1.04ms s1=129/0 s2=128/0 s3=135/0 
+t= 50.0s ok=16   err=0    p50=  0.40ms p99=   0.47ms max=   0.47ms s1=9/0 s2=3/0 s3=4/0 
+total: 10719 ok, 84 errors, 0 stale reads, 0 shed, max latency 3845.9ms
+s1: 84 errors between t=16s and t=36s (9 seconds with errors, 8 of them with no ok)
+errors: 84x server:ClusterDown:The
+verify: 9776 keys intact, 0 ahead (unacked write landed), 943 LOST acknowledged writes
+  lost rcc:1792516077:2017: acked 127, now None
+  lost rcc:1792516077:2022: acked 127, now None
+  lost rcc:1792516077:2026: acked 127, now None
+  lost rcc:1792516077:2031: acked 127, now None
+  lost rcc:1792516077:2035: acked 128, now None
+  lost rcc:1792516077:2039: acked 128, now None
+  lost rcc:1792516077:2040: acked 128, now None
+  lost rcc:1792516077:2041: acked 128, now None
+  lost rcc:1792516077:2044: acked 128, now None
+  lost rcc:1792516077:2045: acked 128, now None

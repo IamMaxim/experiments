@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: 900ms delay into master dc1-s1 (just under the response timeout)
+t=  5.1s   netem dc1-s1: delay 900ms  (applies to packets entering dc1-s1)
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 50.0s load finished
+t= 52.2s cluster healthy

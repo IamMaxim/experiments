@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50 --rate 1 --workers 1
+t=  5.0s incident: server drops idle connections (CONFIG SET timeout 1) under a 1 op/s load
+t=  5.3s   timeout 1 everywhere
+t= 35.0s heal
+t= 35.4s   timeout 0 everywhere
+t= 50.0s load finished
+t= 51.1s cluster healthy

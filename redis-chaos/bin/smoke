@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+# Runs each basic incident under client load and prints one summary row per
+# scenario. Logs land in logs/smoke-<timestamp>/.
+#
+#   bin/smoke              all scenarios
+#   bin/smoke 3 5          only scenarios 3 and 5
+set -euo pipefail
+cd "$(dirname "$0")/.."
+C=bin/chaos
+LEAD=5      # seconds of clean load before the incident
+HOLD=${HOLD:-20}  # seconds the incident lasts
+TAIL=15     # seconds of load after healing
+LOGS=logs/smoke-$(date +%Y%m%d-%H%M%S)
+mkdir -p "$LOGS"
+
+# name | start command | heal command
+SCENARIOS=(
+  "isolate master dc1-s1 (blackhole)|$C isolate dc1-s1|$C heal"
+  "isolate master dc1-s1 (reject)|REJECT=1 $C isolate dc1-s1|$C heal"
+  "isolate whole dc1|$C isolate dc1|$C heal"
+  "partition dc1 <-> dc2, dc3 sees both|$C cut dc1 dc2|$C heal"
+  "kill -9 master dc2-s2, then start|$C kill dc2-s2|$C start dc2-s2"
+  "pause master dc3-s3 (hung process)|$C pause dc3-s3|$C unpause dc3-s3"
+  "100ms+-20ms delay into dc3|$C netem dc3 delay 100ms 20ms|$C netem dc3 off"
+  "client cut off from dc1 only|$C cut client dc1|$C heal"
+)
+
+summarize() {  # log -> "before during after lost"
+  awk -v a="$LEAD" -v b="$((LEAD + HOLD))" '
+    /^t=/ { line = $0; sub(/^t= */, "", line); split(line, f, " "); t = f[1] + 0
+            for (i in f) if (f[i] ~ /^err=/) n = substr(f[i], 5) + 0
+            if (t <= a) pre += n; else if (t <= b + 1) dur += n; else post += n }
+    /^verify:/ { lost = $(NF-3) }
+    END { printf "%s %s %s %s\n", pre + 0, dur + 0, post + 0, (lost == "" ? "?" : lost) }' "$1"
+}
+
+pick=("$@")
+rows=()
+for i in "${!SCENARIOS[@]}"; do
+  n=$((i + 1))
+  [[ ${#pick[@]} -eq 0 || " ${pick[*]} " == *" $n "* ]] || continue
+  IFS='|' read -r name start heal <<<"${SCENARIOS[$i]}"
+  echo "== [$n] $name"
+  $C heal >/dev/null
+  $C rebalance >/dev/null || { echo "cluster not healthy before scenario $n"; exit 1; }
+  log=$LOGS/$n.load.log
+  $C client load --duration $((LEAD + HOLD + TAIL)) --rate 400 >"$log" 2>&1 &
+  load=$!
+  sleep "$LEAD"
+  eval "$start" >/dev/null
+  sleep "$HOLD"
+  $C status >"$LOGS/$n.status-during.txt"
+  eval "$heal" >/dev/null
+  wait "$load" || true
+  if $C wait 60 >/dev/null; then healed=yes; else healed=NO; fi
+  $C status >"$LOGS/$n.status-after.txt"
+  promoted=$(grep -c 'master\*' "$LOGS/$n.status-during.txt" || true)
+  read -r pre dur post lost < <(summarize "$log")
+  rows+=("$(printf '%-2s %-40s %-9s %-10s %-11s %-10s %-6s %s' "$n" "$name" "$promoted" "$pre" "$dur" "$post" "$lost" "$healed")")
+done
+
+echo
+printf '%-2s %-40s %-9s %-10s %-11s %-10s %-6s %s\n' "#" "SCENARIO" "PROMOTED" "ERR-BEFORE" "ERR-DURING" "ERR-AFTER" "LOST" "HEALTHY"
+printf '%s\n' "${rows[@]}"
+echo "logs: $LOGS"
+$C rebalance >/dev/null

@@ -1,0 +1,6 @@
+total: 15860 ok, 409 errors, 0 stale reads, 0 shed, max latency 2961.8ms
+s1: 188 errors between t=9s and t=68s (17 seconds with errors, 17 of them with no ok)
+s2: 48 errors between t=44s and t=68s (9 seconds with errors, 9 of them with no ok)
+s3: 173 errors between t=53s and t=105s (18 seconds with errors, 17 of them with no ok)
+errors: 409x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

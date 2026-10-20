@@ -1,0 +1,4 @@
+total: 16691 ok, 22 errors, 0 stale reads, 0 shed, max latency 2283.6ms
+s1: 22 errors between t=8s and t=13s (4 seconds with errors, 4 of them with no ok)
+errors: 15x io:timed out; 1x server:Moved:1582; 1x server:Moved:2518; 1x server:Moved:3383; 1x server:Moved:3706; 1x server:Moved:3753; 1x server:Moved:4635; 1x server:Moved:5427
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

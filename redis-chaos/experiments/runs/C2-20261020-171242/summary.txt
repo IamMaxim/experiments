@@ -1,0 +1,16 @@
+total: 2055 ok, 240 errors, 0 stale reads, 0 shed, max latency 964.1ms
+s1: 86 errors between t=9s and t=48s (14 seconds with errors, 14 of them with no ok)
+s2: 84 errors between t=9s and t=48s (14 seconds with errors, 14 of them with no ok)
+s3: 70 errors between t=18s and t=51s (12 seconds with errors, 12 of them with no ok)
+errors: 240x io:timed out
+verify: 979 keys intact, 0 ahead (unacked write landed), 21 LOST acknowledged writes
+  lost rcc:1792516363:0: acked 127, now Some(64)
+  lost rcc:1792516363:1: acked 127, now Some(64)
+  lost rcc:1792516363:110: acked 131, now Some(69)
+  lost rcc:1792516363:18: acked 128, now Some(65)
+  lost rcc:1792516363:19: acked 128, now Some(65)
+  lost rcc:1792516363:21: acked 128, now Some(65)
+  lost rcc:1792516363:32: acked 129, now Some(66)
+  lost rcc:1792516363:33: acked 129, now Some(66)
+  lost rcc:1792516363:36: acked 129, now Some(66)
+  lost rcc:1792516363:37: acked 129, now Some(66)

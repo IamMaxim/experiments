@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: 100ms delay into the client (slow client link)
+t=  5.0s   netem client: delay 100ms  (applies to packets entering client)
+t= 25.0s heal
+t= 25.6s   healed everything
+t= 40.0s load finished
+t= 41.3s cluster healthy

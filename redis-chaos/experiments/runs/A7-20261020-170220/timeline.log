@@ -1,0 +1,6 @@
+t=  0.0s load started: rcc --nodelay load --duration 35
+t=  5.0s incident: manual CLUSTER FAILOVER to replica dc2-s1
+t=  5.0s   OK
+t= 20.0s heal
+t= 35.1s load finished
+t= 36.3s cluster healthy

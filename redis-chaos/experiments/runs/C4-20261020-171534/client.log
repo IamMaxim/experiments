@@ -1,0 +1,66 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 782.027µs
+t=  0.0s run 1792516535: mode=Set 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792516535:
+t=  1.0s ok=400  err=0    p50=  0.35ms p99=   0.60ms max=   0.71ms s1=131/0 s2=135/0 s3=134/0 
+t=  2.0s ok=400  err=0    p50=  0.38ms p99=   0.66ms max=   0.71ms s1=131/0 s2=136/0 s3=133/0 
+t=  3.0s ok=400  err=0    p50=  0.37ms p99=   1.98ms max=   2.13ms s1=132/0 s2=133/0 s3=135/0 
+t=  4.0s ok=400  err=0    p50=  0.35ms p99=   2.34ms max=   2.41ms s1=139/0 s2=135/0 s3=126/0 
+t=  5.0s ok=400  err=0    p50=  0.38ms p99=   0.82ms max=   0.89ms s1=131/0 s2=133/0 s3=136/0 
+t=  6.0s ok=22   err=0    p50=  0.46ms p99=   1.88ms max=   1.88ms s1=14/0 s2=4/0 s3=4/0 
+t=  7.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  8.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  8.0s first 'io:timed out' on s3: timed out
+t=  9.0s ok=7    err=16   p50=  0.32ms p99=   0.44ms max=   0.44ms s1=7/0 s2=0/5 s3=0/11 16x io:timed out
+t= 10.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 11.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 12.0s ok=7    err=16   p50=  0.36ms p99=   0.93ms max=   0.93ms s1=7/0 s2=0/8 s3=0/8 16x io:timed out
+t= 13.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 14.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 15.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/6 s3=0/10 16x io:timed out
+t= 16.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 17.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 18.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/8 s2=0/4 s3=0/4 16x io:timed out
+t= 19.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 20.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 21.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/6 s2=0/6 s3=0/4 16x io:timed out
+t= 22.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 23.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 24.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/4 s2=0/6 s3=0/6 16x io:timed out
+t= 25.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 26.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 27.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/3 s2=0/8 s3=0/5 16x io:timed out
+t= 28.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 29.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 30.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/4 s2=0/3 s3=0/9 16x io:timed out
+t= 31.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 32.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 33.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/5 s2=0/9 s3=0/2 16x io:timed out
+t= 34.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 35.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 35.1s LOG WARN async cluster client recovery: beginning slot refresh
+t= 36.0s ok=0    err=16   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/5 s2=0/7 s3=0/4 16x io:timed out
+t= 37.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 37.1s LOG INFO async cluster client recovery: slot refresh complete
+t= 37.1s LOG WARN Failed to connect to node: 10.77.21.10:6379, due to: timed out
+t= 37.1s LOG WARN async cluster client recovery: beginning slot refresh
+t= 37.1s LOG INFO async cluster client recovery: slot refresh complete
+t= 38.0s ok=360  err=0    p50=  0.32ms p99=2007.82ms max=2042.35ms s1=125/0 s2=119/0 s3=116/0 
+t= 39.0s ok=398  err=1    p50=  0.37ms p99=   0.62ms max=   0.70ms s1=125/1 s2=138/0 s3=135/0 1x io:timed out
+t= 40.0s ok=400  err=0    p50=  0.32ms p99=   0.73ms max=   1.58ms s1=136/0 s2=133/0 s3=131/0 
+t= 41.0s ok=400  err=0    p50=  0.33ms p99=   0.61ms max=   0.66ms s1=131/0 s2=137/0 s3=132/0 
+t= 42.0s ok=400  err=0    p50=  0.34ms p99=   0.50ms max=   0.59ms s1=134/0 s2=130/0 s3=136/0 
+t= 43.0s ok=400  err=0    p50=  0.36ms p99=   0.56ms max=   0.64ms s1=138/0 s2=135/0 s3=127/0 
+t= 44.0s ok=400  err=0    p50=  0.35ms p99=   0.70ms max=   0.72ms s1=126/0 s2=138/0 s3=136/0 
+t= 45.0s ok=400  err=0    p50=  0.34ms p99=   0.50ms max=   0.50ms s1=137/0 s2=131/0 s3=132/0 
+t= 46.0s ok=400  err=0    p50=  0.39ms p99=   1.58ms max=   1.88ms s1=134/0 s2=134/0 s3=132/0 
+t= 47.0s ok=400  err=0    p50=  0.42ms p99=   1.28ms max=   1.31ms s1=132/0 s2=134/0 s3=134/0 
+t= 48.0s ok=400  err=0    p50=  0.38ms p99=   2.37ms max=   3.38ms s1=140/0 s2=133/0 s3=127/0 
+t= 49.0s ok=400  err=0    p50=  0.37ms p99=   2.02ms max=   2.07ms s1=124/0 s2=138/0 s3=138/0 
+t= 50.0s ok=400  err=0    p50=  0.38ms p99=   0.83ms max=   0.99ms s1=136/0 s2=134/0 s3=130/0 
+t= 50.0s ok=16   err=0    p50=  0.43ms p99=   0.52ms max=   0.52ms s1=5/0 s2=7/0 s3=4/0 
+total: 7210 ok, 161 errors, 0 stale reads, 0 shed, max latency 2042.4ms
+s1: 36 errors between t=18s and t=39s (8 seconds with errors, 7 of them with no ok)
+s2: 62 errors between t=9s and t=36s (10 seconds with errors, 10 of them with no ok)
+s3: 63 errors between t=9s and t=36s (10 seconds with errors, 10 of them with no ok)
+errors: 161x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

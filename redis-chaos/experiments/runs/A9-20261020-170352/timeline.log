@@ -1,0 +1,6 @@
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: busy Lua script for 15s on master dc1-s1 (blocks clients and the bus)
+t= 19.6s   1
+t= 25.0s heal
+t= 40.0s load finished
+t= 41.6s cluster healthy

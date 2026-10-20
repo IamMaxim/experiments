@@ -1,0 +1,60 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 1.108977ms
+t=  0.0s run 1792518384: mode=Mixed 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792518384:
+t=  1.0s ok=400  err=0    p50=  0.34ms p99=   0.54ms max=   0.57ms s1=133/0 s2=132/0 s3=135/0 
+t=  2.0s ok=400  err=0    p50=  0.40ms p99=   1.76ms max=   1.90ms s1=134/0 s2=131/0 s3=135/0 
+t=  3.0s ok=400  err=0    p50=  0.40ms p99=   0.98ms max=   1.09ms s1=131/0 s2=135/0 s3=134/0 
+t=  4.0s ok=400  err=0    p50=  0.38ms p99=   1.93ms max=   2.76ms s1=140/0 s2=133/0 s3=127/0 
+t=  5.0s ok=400  err=0    p50=  0.43ms p99=   1.98ms max=   2.21ms s1=133/0 s2=135/0 s3=132/0 
+t=  6.0s ok=96   err=0    p50=  0.31ms p99=   0.56ms max=   0.57ms s1=25/0 s2=37/0 s3=34/0 
+t=  7.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  8.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  8.0s first 'io:timed out' on s1: timed out
+t=  9.0s ok=71   err=16   p50=  0.25ms p99=   0.85ms max=   0.88ms s1=14/16 s2=30/0 s3=27/0 16x io:timed out
+t= 10.0s ok=9    err=0    p50=  0.24ms p99=   0.37ms max=   0.37ms s1=3/0 s2=3/0 s3=3/0 
+t= 11.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 12.0s ok=57   err=15   p50=  0.25ms p99=   0.45ms max=   0.48ms s1=8/15 s2=19/0 s3=30/0 15x io:timed out
+t= 13.0s ok=1    err=1    p50=  0.30ms p99=   0.30ms max=   0.30ms s1=0/1 s2=1/0 s3=0/0 1x io:timed out
+t= 14.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 15.0s ok=77   err=15   p50=  0.29ms p99=   0.82ms max=   0.95ms s1=12/15 s2=33/0 s3=32/0 15x io:timed out
+t= 16.0s ok=13   err=1    p50=  0.26ms p99=   0.33ms max=   0.33ms s1=3/1 s2=6/0 s3=4/0 1x io:timed out
+t= 17.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 18.0s ok=67   err=13   p50=  0.25ms p99=   1.19ms max=   1.33ms s1=15/13 s2=24/0 s3=28/0 13x io:timed out
+t= 19.0s ok=37   err=3    p50=  0.36ms p99=   1.20ms max=   1.20ms s1=7/3 s2=15/0 s3=15/0 3x io:timed out
+t= 20.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 21.0s ok=21   err=9    p50=  0.33ms p99=   0.45ms max=   0.45ms s1=4/9 s2=9/0 s3=8/0 9x io:timed out
+t= 22.0s ok=29   err=7    p50=  0.18ms p99=   0.39ms max=   0.39ms s1=8/7 s2=9/0 s3=12/0 7x io:timed out
+t= 23.0s ok=4    err=0    p50=  0.25ms p99=   0.30ms max=   0.30ms s1=1/0 s2=0/0 s3=3/0 
+t= 24.0s ok=7    err=5    p50=  0.23ms p99=   3.67ms max=   3.67ms s1=0/5 s2=5/0 s3=2/0 5x io:timed out
+t= 25.0s ok=60   err=10   p50=  0.24ms p99=   0.48ms max=   0.52ms s1=11/10 s2=27/0 s3=22/0 10x io:timed out
+t= 26.0s ok=7    err=1    p50=  0.26ms p99=   0.40ms max=   0.40ms s1=0/1 s2=4/0 s3=3/0 1x io:timed out
+t= 27.0s ok=2    err=2    p50=  0.20ms p99=   0.20ms max=   0.20ms s1=0/2 s2=0/0 s3=2/0 2x io:timed out
+t= 28.0s ok=71   err=13   p50=  0.23ms p99=   0.42ms max=   0.70ms s1=16/13 s2=27/0 s3=28/0 13x io:timed out
+t= 29.0s ok=3    err=1    p50=  0.28ms p99=   0.41ms max=   0.41ms s1=0/1 s2=2/0 s3=1/0 1x io:timed out
+t= 30.0s ok=2    err=2    p50=  0.20ms p99=   0.20ms max=   0.20ms s1=1/2 s2=0/0 s3=1/0 2x io:timed out
+t= 31.0s ok=67   err=12   p50=  0.21ms p99=   0.50ms max=   0.55ms s1=14/12 s2=27/0 s3=26/0 12x io:timed out
+t= 32.0s ok=9    err=2    p50=  0.17ms p99=   0.54ms max=   0.54ms s1=2/2 s2=3/0 s3=4/0 2x io:timed out
+t= 33.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 34.0s ok=43   err=13   p50=  0.26ms p99=   3.24ms max=   3.24ms s1=6/13 s2=17/0 s3=20/0 13x io:timed out
+t= 35.0s ok=33   err=3    p50=  0.23ms p99=   0.45ms max=   0.45ms s1=8/3 s2=11/0 s3=14/0 3x io:timed out
+t= 36.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 37.0s ok=26   err=8    p50=  0.26ms p99=   0.94ms max=   0.94ms s1=5/8 s2=9/0 s3=12/0 8x io:timed out
+t= 38.0s ok=38   err=8    p50=  0.27ms p99=   3.46ms max=   3.46ms s1=6/8 s2=19/0 s3=13/0 8x io:timed out
+t= 39.0s ok=2    err=0    p50=  0.41ms p99=   0.41ms max=   0.41ms s1=0/0 s2=1/0 s3=1/0 
+t= 40.0s ok=22   err=4    p50=  0.23ms p99=   0.51ms max=   0.51ms s1=4/4 s2=11/0 s3=7/0 4x io:timed out
+t= 41.0s ok=79   err=11   p50=  0.21ms p99=   0.38ms max=   0.47ms s1=15/11 s2=28/0 s3=36/0 11x io:timed out
+t= 42.0s ok=3    err=1    p50=  0.19ms p99=   0.24ms max=   0.24ms s1=0/1 s2=2/0 s3=1/0 1x io:timed out
+t= 43.0s ok=21   err=3    p50=  0.29ms p99=   0.96ms max=   0.96ms s1=7/3 s2=8/0 s3=6/0 3x io:timed out
+t= 44.0s ok=42   err=12   p50=  0.25ms p99=   4.15ms max=   4.15ms s1=9/12 s2=18/0 s3=15/0 12x io:timed out
+t= 45.0s ok=3    err=1    p50=  0.21ms p99=   0.67ms max=   0.67ms s1=1/1 s2=1/0 s3=1/0 1x io:timed out
+t= 46.0s ok=1    err=1    p50=  0.17ms p99=   0.17ms max=   0.17ms s1=0/1 s2=1/0 s3=0/0 1x io:timed out
+t= 47.0s ok=55   err=13   p50=  0.26ms p99=   0.46ms max=   0.54ms s1=8/13 s2=25/0 s3=22/0 13x io:timed out
+t= 48.0s ok=16   err=2    p50=  0.29ms p99=   0.47ms max=   0.47ms s1=3/2 s2=8/0 s3=5/0 2x io:timed out
+t= 49.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 50.0s ok=62   err=12   p50=  0.20ms p99=   0.35ms max=   0.45ms s1=13/12 s2=23/0 s3=26/0 12x io:timed out
+t= 53.0s ok=2    err=14   p50=  0.30ms p99=   0.30ms max=   0.30ms s1=0/14 s2=1/0 s3=1/0 14x io:timed out
+total: 3158 ok, 234 errors, 0 stale reads, 0 shed, max latency 4.2ms
+s1: 234 errors between t=9s and t=53s (33 seconds with errors, 8 of them with no ok)
+errors: 234x io:timed out
+t= 53.0s LOG DEBUG Received request to reconnect to initial nodes
+verify: 752 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

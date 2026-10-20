@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: 5% packet loss into master dc1-s1
+t=  5.0s   netem dc1-s1: loss 5%  (applies to packets entering dc1-s1)
+t= 35.0s heal
+t= 35.7s   healed everything
+t= 50.0s load finished
+t= 51.4s cluster healthy

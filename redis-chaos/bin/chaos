@@ -1,0 +1,381 @@
+#!/usr/bin/env bash
+# Control the redis-chaos lab: cluster lifecycle, network incidents, process
+# incidents, and a topology view. Run `chaos help`.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+ROUTER=rc-router
+CLIENT=rc-client
+CLIENT_IP=10.77.100.10
+DCS=(1 2 3)
+SHARDS=(1 2 3)
+NODES=()
+for d in "${DCS[@]}"; do for s in "${SHARDS[@]}"; do NODES+=("dc$d-s$s"); done; done
+
+node_ip() { local n=$1; echo "10.77.${n:2:1}${n:5:1}.10"; }
+
+die() { echo "chaos: $*" >&2; exit 1; }
+
+# --- targets ---------------------------------------------------------------
+# A target is: dcN, sN (every node of a shard), dcN-sN, client, or a
+# comma-separated mix ("dc1-s1,dc2-s2").
+
+target_nodes() {  # prints node names (client excluded)
+  local part
+  IFS=, read -ra parts <<<"$1"
+  for part in "${parts[@]}"; do
+    case $part in
+      dc[123]-s[1234]) echo "$part" ;;  # s4 = spare node, not in the cluster
+      dc[123]) for s in "${SHARDS[@]}"; do echo "$part-s$s"; done ;;
+      s[123]) for d in "${DCS[@]}"; do echo "dc$d-$part"; done ;;
+      client) ;;
+      all) printf '%s\n' "${NODES[@]}" ;;
+      *) die "unknown target '$part' (dcN, sN, dcN-sN, client, all)" ;;
+    esac
+  done
+}
+
+target_ips() {  # nft set body: "10.77.11.10, 10.77.12.10"
+  local ips=() n
+  for n in $(target_nodes "$1"); do ips+=("$(node_ip "$n")"); done
+  [[ ,$1, == *,client,* ]] && ips+=("$CLIENT_IP")
+  [[ ${#ips[@]} -gt 0 ]] || die "target '$1' is empty"
+  local IFS=,; echo "${ips[*]}" | sed 's/,/, /g'
+}
+
+target_containers() {
+  local n
+  for n in $(target_nodes "$1"); do echo "rc-$n"; done
+  [[ ,$1, == *,client,* ]] && echo "$CLIENT"
+  return 0
+}
+
+rexec() { docker exec "$ROUTER" "$@"; }
+
+# --- network incidents (nft on the router) ---------------------------------
+
+verdict() { [[ ${REJECT:-0} == 1 ]] && echo "reject with icmpx admin-prohibited" || echo drop; }
+
+add_rule() {  # add_rule <label> <match...>
+  local label=$1; shift
+  rexec nft add rule inet chaos incidents "$@" "$(verdict)" comment "\"$label\""
+}
+
+cmd_isolate() {  # isolate T: T keeps talking to itself, nothing else
+  local t=${1:?target}; local set; set=$(target_ips "$t")
+  add_rule "isolate $t" ip saddr "{ $set }" ip daddr "!=" "{ $set }"
+  add_rule "isolate $t" ip daddr "{ $set }" ip saddr "!=" "{ $set }"
+  echo "isolated $t"
+}
+
+cmd_cut() {  # cut A B: both directions between A and B
+  local a=${1:?target A} b=${2:?target B}; local sa sb
+  sa=$(target_ips "$a"); sb=$(target_ips "$b")
+  add_rule "cut $a $b" ip saddr "{ $sa }" ip daddr "{ $sb }"
+  add_rule "cut $a $b" ip saddr "{ $sb }" ip daddr "{ $sa }"
+  echo "cut $a <-> $b"
+}
+
+cmd_cut_oneway() {  # packets from A to B are dropped, B to A still flow
+  local a=${1:?target A} b=${2:?target B}; local sa sb
+  sa=$(target_ips "$a"); sb=$(target_ips "$b")
+  add_rule "cut-oneway $a $b" ip saddr "{ $sa }" ip daddr "{ $sb }"
+  echo "cut $a -> $b (one way)"
+}
+
+router_iface() { rexec ip -o route get "$1" | sed -E 's/.* dev ([^ ]+).*/\1/'; }
+
+cmd_netem() {  # netem T <netem args...> | netem T off
+  local t=${1:?target}; shift
+  [[ $# -gt 0 ]] || die "netem needs args, e.g. 'delay 100ms 20ms loss 5%' or 'off'"
+  local ip
+  for ip in $(target_ips "$t" | tr -d ,); do
+    local ifc; ifc=$(router_iface "$ip")
+    if [[ $1 == off ]]; then
+      rexec tc qdisc del dev "$ifc" root 2>/dev/null || true
+    else
+      rexec tc qdisc replace dev "$ifc" root netem "$@"
+    fi
+  done
+  echo "netem $t: $*  (applies to packets entering $t)"
+}
+
+cmd_heal() {  # heal [label]: all incidents, or rules with one label
+  if [[ $# -gt 0 ]]; then
+    local label="$*" h
+    for h in $(rexec nft -a list chain inet chaos incidents | grep -F "comment \"$label\"" | sed -E 's/.*# handle ([0-9]+).*/\1/'); do
+      rexec nft delete rule inet chaos incidents handle "$h"
+    done
+    echo "healed '$label'"
+    return
+  fi
+  rexec nft flush chain inet chaos incidents
+  local ifc
+  for ifc in $(rexec ls /sys/class/net | grep -v '^lo$'); do rexec tc qdisc del dev "$ifc" root 2>/dev/null || true; done
+  local c state
+  for c in $(target_containers all,client); do
+    state=$(docker inspect -f '{{.State.Status}}' "$c")
+    case $state in
+      paused) docker unpause "$c" >/dev/null ;;
+      exited|created) docker start "$c" >/dev/null ;;
+    esac
+  done
+  echo "healed everything"
+}
+
+cmd_incidents() {
+  echo "== network rules"
+  rexec nft -a list chain inet chaos incidents | grep -E 'comment' | sed -E 's/^\s+/  /' || echo "  none"
+  echo "== netem"
+  rexec tc qdisc show | grep netem | sed 's/^/  /' || echo "  none"
+  echo "== containers not running"
+  local c st any=0
+  for c in $(target_containers all,client); do
+    st=$(docker inspect -f '{{.State.Status}}' "$c" 2>/dev/null || echo missing)
+    [[ $st == running ]] || { echo "  $c $st"; any=1; }
+  done
+  [[ $any == 1 ]] || echo "  none"
+}
+
+# --- process incidents -----------------------------------------------------
+
+proc_cmd() {
+  local action=$1 t=${2:?target}; local cs; mapfile -t cs < <(target_containers "$t")
+  case $action in
+    kill) docker kill -s KILL "${cs[@]}" >/dev/null ;;
+    *) docker "$action" "${cs[@]}" >/dev/null ;;
+  esac
+  echo "$action: ${cs[*]}"
+}
+
+# --- cluster ---------------------------------------------------------------
+
+rcli() { rexec timeout 2 redis-cli -h "$(node_ip "$1")" "${@:2}"; }
+cmd_cli() { rexec timeout 30 redis-cli -h "$(node_ip "${1:?node}")" "${@:2}"; }  # for scenarios
+
+cmd_init() {
+  local masters=()
+  for s in "${SHARDS[@]}"; do masters+=("$(node_ip "dc$s-s$s"):6379"); done
+  rexec redis-cli --cluster create "${masters[@]}" --cluster-replicas 0 --cluster-yes >/dev/null
+  for s in "${SHARDS[@]}"; do
+    local mid; mid=$(rcli "dc$s-s$s" cluster myid)
+    for d in "${DCS[@]}"; do
+      [[ $d == "$s" ]] && continue
+      rexec redis-cli --cluster add-node "$(node_ip "dc$d-s$s"):6379" "$(node_ip "dc$s-s$s"):6379" \
+        --cluster-slave --cluster-master-id "$mid" >/dev/null
+    done
+  done
+  echo "cluster created; waiting for convergence"
+  cmd_wait 60
+}
+
+# Raw dump of every node's view, gathered in one exec on the router.
+gather() {
+  local ips=() n
+  for n in "${NODES[@]}"; do ips+=("$(node_ip "$n")"); done
+  rexec sh -c '
+    for ip in "$@"; do
+      echo "### $ip"
+      timeout 1 redis-cli -h $ip cluster nodes 2>/dev/null || echo "!unreachable"
+      timeout 1 redis-cli -h $ip cluster info 2>/dev/null | grep -E "^cluster_(state|current_epoch)" | tr -d "\r" | sed "s/^/#/"
+      timeout 1 redis-cli -h $ip info replication 2>/dev/null | grep -E "^master_link_status" | tr -d "\r" | sed "s/^/#/"
+    done' _ "${ips[@]}"
+}
+
+# Table: one row per node, with the node's own view of itself and of failures.
+cmd_status() {
+  gather | awk '
+    function nm(addr,  a, o) { split(addr, a, ":"); split(a[1], o, "."); return "dc" substr(o[3],1,1) "-s" substr(o[3],2,1) }
+    /^### / { cur = nm($2); order[++n] = cur; next }
+    /^!unreachable/ { down[cur] = 1; next }
+    /^#cluster_state:/ { split($0, kv, ":"); state[cur] = kv[2]; next }
+    /^#cluster_current_epoch:/ { split($0, kv, ":"); epoch[cur] = kv[2]; next }
+    /^#master_link_status:/ { split($0, kv, ":"); link[cur] = kv[2]; next }
+    NF >= 8 {
+      name[$1] = nm($2)
+      if ($3 ~ /myself/) {
+        role[cur] = ($3 ~ /master/) ? "master" : "replica"
+        mof[cur] = $4
+        sl = ""; for (i = 9; i <= NF; i++) sl = sl (sl ? " " : "") $i
+        slots[cur] = sl
+      } else if ($3 ~ /fail/) {
+        f = nm($2) (($3 ~ /fail\?/) ? "?" : "!")
+        fails[cur] = fails[cur] (fails[cur] ? "," : "") f
+      }
+    }
+    END {
+      printf "%-8s %-12s %-8s %-15s %-6s %-5s %-12s %s\n", "NODE", "IP", "ROLE", "REPLICA-OF", "STATE", "EPOCH", "SLOTS", "SEES-FAILED (!=fail ?=pfail)"
+      for (i = 1; i <= n; i++) {
+        c = order[i]; split(c, p, "-"); ip = "10.77." substr(p[1],3) substr(p[2],2) ".10"
+        if (down[c]) { printf "%-8s %-12s %s\n", c, ip, "UNREACHABLE from router (stopped/paused/hung)"; continue }
+        r = role[c]; mark = ""
+        if (substr(p[1],3) == substr(p[2],2) && r != "master") mark = "*"
+        if (substr(p[1],3) != substr(p[2],2) && r == "master") mark = "*"
+        of = (mof[c] == "-") ? "" : name[mof[c]] (link[c] == "up" ? "" : " (down)")
+        printf "%-8s %-12s %-8s %-15s %-6s %-5s %-12s %s\n", c, ip, r mark, of, state[c], epoch[c], slots[c], fails[c]
+      }
+      print "(* = role differs from the designed layout; run `chaos rebalance` once healthy)"
+    }'
+}
+
+# Healthy = every node reachable, cluster_state ok, nobody flagged fail/pfail,
+# every replication link up, and 3 masters plus 6 replicas.
+healthy() {
+  gather | awk '
+    /^### / { nodes++ ; next }
+    /^!unreachable/ { bad = 1 }
+    /^#cluster_state:/ { if ($0 !~ /:ok$/) bad = 1 }
+    /^#master_link_status:/ { if ($0 !~ /:up$/) bad = 1 }
+    NF >= 8 && $3 ~ /myself/ { if ($3 ~ /master/) m++; else r++ }
+    NF >= 8 && $3 ~ /fail/ { bad = 1 }
+    END { exit !(nodes == 9 && m == 3 && r == 6 && !bad) }'
+}
+
+cmd_wait() {
+  local timeout=${1:-60} start=$SECONDS
+  until healthy; do
+    (( SECONDS - start < timeout )) || { echo "not healthy after ${timeout}s"; cmd_status; return 1; }
+    sleep 1
+  done
+  echo "healthy after $((SECONDS - start))s"
+}
+
+# Slot that identifies shard S (its designed range starts there).
+shard_slot() { case $1 in 1) echo 0 ;; 2) echo 5461 ;; 3) echo 10923 ;; esac; }
+
+# Node id of the master currently serving a slot, from dc2-s2's view (any node will do).
+master_of_slot() {
+  local slot=$1
+  rcli dc2-s2 cluster nodes | awk -v slot="$slot" '
+    $3 ~ /master/ { for (i = 9; i <= NF; i++) { split($i, r, "-"); lo = r[1]; hi = (r[2] == "" ? r[1] : r[2]); if (lo <= slot && slot <= hi) { print $1; exit } } }'
+}
+
+node_id() { rcli "$1" cluster myid; }
+node_master_id() { rcli "$1" cluster nodes | awk '$3 ~ /myself/ { print $4 }'; }
+is_master() { [[ $(rcli "$1" role | head -1) == master ]]; }
+
+until_ok() {  # until_ok <secs> <cmd...>: poll a predicate
+  local limit=$1 start=$SECONDS; shift
+  until "$@"; do (( SECONDS - start < limit )) || return 1; sleep 0.5; done
+}
+
+designed_ok() {
+  local s d
+  for s in "${SHARDS[@]}"; do
+    [[ $(master_of_slot "$(shard_slot "$s")") == "$(node_id "dc$s-s$s")" ]] || return 1
+    for d in "${DCS[@]}"; do
+      [[ $d == "$s" ]] && continue
+      [[ $(node_master_id "dc$d-s$s") == "$(node_id "dc$s-s$s")" ]] || return 1
+    done
+  done
+}
+
+# Put every node back where the design says: dcN-sN master of shard N, the
+# other two nodes of the shard its replicas. Handles plain failovers and the
+# reshuffles replica migration produces after cascading failovers.
+cmd_rebalance() {
+  cmd_wait 60 >/dev/null || { echo "cluster not healthy, not rebalancing"; return 1; }
+  local s d want cur
+  for s in "${SHARDS[@]}"; do
+    local me="dc$s-s$s"
+    want=$(master_of_slot "$(shard_slot "$s")")
+    [[ -n $want ]] || { echo "nobody serves slot $(shard_slot "$s")"; return 1; }
+    if [[ $want != "$(node_id "$me")" ]]; then
+      if [[ $(node_master_id "$me") != "$want" ]]; then
+        echo "$me: replicating the current master of shard $s first"
+        rcli "$me" cluster replicate "$want" >/dev/null
+        until_ok 30 bash -c "[[ \$($0 cli $me info replication | grep -c 'master_link_status:up') -gt 0 ]]" || { echo "$me: replication link not up"; return 1; }
+      fi
+      rcli "$me" cluster failover >/dev/null
+      echo "$me: failover requested"
+      until_ok 30 is_master "$me" || { echo "$me: not master after 30s"; return 1; }
+    fi
+    for d in "${DCS[@]}"; do
+      [[ $d == "$s" ]] && continue
+      cur=$(node_master_id "dc$d-s$s")
+      if [[ $cur != "$(node_id "$me")" ]]; then
+        echo "dc$d-s$s: re-attaching to $me"
+        rcli "dc$d-s$s" cluster replicate "$(node_id "$me")" >/dev/null
+      fi
+    done
+  done
+  until_ok 30 designed_ok || { echo "designed layout not restored after 30s"; cmd_status; return 1; }
+  cmd_wait 60
+}
+
+cmd_up() {
+  bin/gen-compose >/dev/null
+  docker compose build -q router
+  docker compose up -d --wait 2>&1 | grep -vE 'Waiting|Healthy' || true
+}
+
+cmd_reset() {
+  docker compose down -v -t 1 2>&1 | tail -1
+  cmd_up
+  cmd_init
+}
+
+cmd_client() {
+  [[ -x client/target/x86_64-unknown-linux-musl/release/rcc ]] || die "build the client first: (cd client && cargo build --release)"
+  local tty=(); [[ -t 0 && -t 1 ]] && tty=(-it)
+  docker exec "${tty[@]}" -e "RUST_LOG=${RUST_LOG:-redis=info}" "$CLIENT" /app/rcc "$@"
+}
+
+usage() {
+  cat <<'EOF'
+chaos <command> [args]
+
+Targets: dc1..dc3, s1..s3 (a shard across all DCs), dc2-s3 (one node),
+client, all, or a comma list (dc1-s1,dc2-s1). Node dcN-sN is the designed
+master of shard N when N matches. dcN-s4 are spare nodes outside the cluster.
+
+Lifecycle
+  up                     build image, start containers (no cluster yet)
+  init                   create the cluster: masters dc1-s1, dc2-s2, dc3-s3
+  reset                  destroy everything and recreate a fresh cluster
+  down                   stop and remove everything
+  status                 every node's view: role, epoch, slots, who it sees failed
+  wait [secs]            block until the cluster is fully healthy
+  rebalance              fail masters back to the designed layout
+
+Network incidents (REJECT=1 to refuse fast instead of blackholing)
+  isolate T              T can only talk to itself (e.g. isolate dc1)
+  cut A B                drop all traffic between A and B
+  cut-oneway A B         drop A -> B only
+  netem T ARGS...        tc netem on packets entering T (delay 100ms 20ms loss 5%)
+  netem T off
+  heal [label]           remove all incidents, or rules labelled e.g. "isolate dc1"
+  incidents              list active incidents
+
+Process incidents
+  kill|stop|start|pause|unpause|restart T
+
+Client
+  client ARGS...         run the redis-rs client (rcc) inside rc-client (RUST_LOG passes through)
+  cli NODE ARGS...       redis-cli against one node, from the router
+  targets T              print the node names a target expands to
+EOF
+}
+
+cmd=${1:-help}; shift || true
+case $cmd in
+  up) cmd_up ;;
+  down) docker compose down -v -t 1 ;;
+  init) cmd_init ;;
+  reset) cmd_reset ;;
+  status) cmd_status ;;
+  wait) cmd_wait "$@" ;;
+  rebalance) cmd_rebalance ;;
+  isolate) cmd_isolate "$@" ;;
+  cut) cmd_cut "$@" ;;
+  cut-oneway) cmd_cut_oneway "$@" ;;
+  netem) cmd_netem "$@" ;;
+  heal) cmd_heal "$@" ;;
+  incidents) cmd_incidents ;;
+  kill|stop|start|pause|unpause|restart) proc_cmd "$cmd" "$@" ;;
+  client) cmd_client "$@" ;;
+  cli) cmd_cli "$@" ;;
+  targets) target_nodes "${1:?target}" ;;
+  help|-h|--help) usage ;;
+  *) usage; exit 1 ;;
+esac

@@ -1,0 +1,6 @@
+total: 14271 ok, 5745 errors, 0 stale reads, 0 shed, max latency 5.9ms
+s1: 97 errors between t=12s and t=13s (2 seconds with errors, 0 of them with no ok)
+s2: 5546 errors between t=6s and t=50s (46 seconds with errors, 21 of them with no ok)
+s3: 102 errors between t=12s and t=13s (2 seconds with errors, 0 of them with no ok)
+errors: 5745x server:ExecAbort:[(Index
+verify: 3000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

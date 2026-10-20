@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 80
+t=  5.0s incident: reshard 2000 slots s1 -> s2 under load, then back
+t= 14.8s   moved 2000 slots to s2
+t= 36.6s   moved 2000 slots back
+t= 65.0s heal
+t= 80.0s load finished
+t= 82.3s cluster healthy

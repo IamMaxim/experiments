@@ -1,0 +1,136 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 1.245191ms
+t=  0.0s run 1792515646: mode=Set 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792515646:
+t=  1.0s ok=400  err=0    p50=  0.38ms p99=   0.75ms max=   0.87ms s1=136/0 s2=137/0 s3=127/0 
+t=  2.0s ok=400  err=0    p50=  0.40ms p99=   0.64ms max=   0.80ms s1=132/0 s2=137/0 s3=131/0 
+t=  3.0s ok=400  err=0    p50=  0.40ms p99=   1.03ms max=   1.18ms s1=138/0 s2=134/0 s3=128/0 
+t=  4.0s ok=400  err=0    p50=  0.40ms p99=   0.87ms max=   0.91ms s1=138/0 s2=137/0 s3=125/0 
+t=  5.0s ok=400  err=0    p50=  0.46ms p99=   1.03ms max=   1.13ms s1=134/0 s2=133/0 s3=133/0 
+t=  5.4s LOG WARN ClusterConnInner: connection to 10.77.11.10:6379 lost; repairing in background
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN async cluster client recovery: beginning slot refresh
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG INFO async cluster client recovery: slot refresh complete
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG WARN async cluster client recovery: beginning slot refresh
+t=  5.4s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: Connection refused (os error 111)
+t=  5.4s LOG INFO async cluster client recovery: slot refresh complete
+t=  6.0s ok=35   err=0    p50=  0.49ms p99=   0.73ms max=   0.73ms s1=6/0 s2=15/0 s3=14/0 
+t=  6.5s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t=  6.5s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: timed out
+t=  6.7s first 'server:Moved:3882' on s1: Moved: 3882 10.77.11.10:6379
+t=  6.7s first 'server:Moved:4501' on s1: Moved: 4501 10.77.11.10:6379
+t=  6.7s first 'server:Moved:4675' on s1: Moved: 4675 10.77.11.10:6379
+t=  6.7s first 'server:Moved:1090' on s1: Moved: 1090 10.77.11.10:6379
+t=  6.7s first 'server:Moved:2182' on s1: Moved: 2182 10.77.11.10:6379
+t=  6.7s first 'server:Moved:5351' on s1: Moved: 5351 10.77.11.10:6379
+t=  6.7s first 'server:Moved:4807' on s1: Moved: 4807 10.77.11.10:6379
+t=  6.7s first 'server:Moved:1222' on s1: Moved: 1222 10.77.11.10:6379
+t=  6.7s first 'server:Moved:5410' on s1: Moved: 5410 10.77.11.10:6379
+t=  6.7s LOG WARN async cluster client recovery: beginning slot refresh
+t=  6.7s first 'server:Moved:436' on s1: Moved: 436 10.77.11.10:6379
+t=  6.7s first 'server:Moved:1283' on s1: Moved: 1283 10.77.11.10:6379
+t=  6.7s first 'server:Moved:4369' on s1: Moved: 4369 10.77.11.10:6379
+t=  6.7s first 'server:Moved:1415' on s1: Moved: 1415 10.77.11.10:6379
+t=  7.0s ok=0    err=13   p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/13 s2=0/0 s3=0/0 1x server:Moved:1090; 1x server:Moved:1222; 1x server:Moved:1283; 1x server:Moved:1415; 1x server:Moved:2182; 1x server:Moved:3882; 1x server:Moved:436; 1x server:Moved:4369; 1x server:Moved:4501; 1x server:Moved:4675; 1x server:Moved:4807; 1x server:Moved:5351; 1x server:Moved:5410
+t=  7.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t=  7.7s LOG INFO async cluster client recovery: slot refresh complete
+t=  7.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t=  7.7s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: timed out
+t=  7.7s first 'server:Moved:304' on s1: Moved: 304 10.77.11.10:6379
+t=  7.7s LOG WARN async cluster client recovery: beginning slot refresh
+t=  7.7s first 'server:Moved:610' on s1: Moved: 610 10.77.11.10:6379
+t=  7.7s first 'server:Moved:1940' on s1: Moved: 1940 10.77.11.10:6379
+t=  8.0s ok=0    err=3    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/3 s2=0/0 s3=0/0 1x server:Moved:1940; 1x server:Moved:304; 1x server:Moved:610
+t=  8.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t=  8.7s LOG INFO async cluster client recovery: slot refresh complete
+t=  8.7s LOG WARN async cluster client recovery: beginning slot refresh
+t=  9.0s ok=10   err=0    p50=2004.74ms p99=2004.75ms max=2004.75ms s1=0/0 s2=5/0 s3=5/0 
+t=  9.7s first 'io:timed out' on s1: timed out
+t=  9.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t=  9.7s LOG INFO async cluster client recovery: slot refresh complete
+t=  9.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t=  9.7s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: timed out
+t=  9.7s LOG WARN async cluster client recovery: beginning slot refresh
+t= 10.0s ok=2    err=3    p50=2004.22ms p99=2004.22ms max=2004.22ms s1=0/3 s2=2/0 s3=0/0 3x io:timed out
+t= 10.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t= 10.7s LOG INFO async cluster client recovery: slot refresh complete
+t= 10.7s LOG WARN async cluster client recovery: beginning slot refresh
+t= 11.0s ok=8    err=1    p50=2002.79ms p99=2002.83ms max=2002.83ms s1=0/1 s2=7/0 s3=1/0 1x io:timed out
+t= 11.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t= 11.7s LOG INFO async cluster client recovery: slot refresh complete
+t= 11.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t= 11.7s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: timed out
+t= 11.7s LOG WARN async cluster client recovery: beginning slot refresh
+t= 12.0s ok=2    err=5    p50=2003.68ms p99=2003.68ms max=2003.68ms s1=0/5 s2=0/0 s3=2/0 5x io:timed out
+t= 12.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t= 12.7s LOG INFO async cluster client recovery: slot refresh complete
+t= 12.7s LOG WARN async cluster client recovery: beginning slot refresh
+t= 13.0s ok=11   err=1    p50=2003.23ms p99=2003.28ms max=2003.28ms s1=0/1 s2=5/0 s3=6/0 1x io:timed out
+t= 13.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t= 13.7s LOG INFO async cluster client recovery: slot refresh complete
+t= 13.7s LOG WARN Failed to connect to node: 10.77.11.10:6379, due to: timed out
+t= 13.7s LOG DEBUG repair_node: failed to reconnect 10.77.11.10:6379: timed out
+t= 13.7s LOG WARN async cluster client recovery: beginning slot refresh
+t= 13.7s LOG INFO async cluster client recovery: slot refresh complete
+t= 13.7s LOG WARN async cluster client recovery: beginning slot refresh
+t= 13.7s LOG INFO async cluster client recovery: slot refresh complete
+t= 14.0s ok=102  err=2    p50=  0.34ms p99=1002.65ms max=1002.85ms s1=34/2 s2=30/0 s3=38/0 2x io:timed out
+t= 15.0s ok=339  err=2    p50=  0.34ms p99=   0.65ms max=   0.81ms s1=119/1 s2=111/1 s3=109/0 2x io:timed out
+t= 16.0s ok=401  err=0    p50=  0.37ms p99=   2.63ms max=2285.66ms s1=131/0 s2=141/0 s3=129/0 
+t= 17.0s ok=400  err=0    p50=  0.39ms p99=   1.15ms max=   1.24ms s1=136/0 s2=135/0 s3=129/0 
+t= 18.0s ok=400  err=0    p50=  0.38ms p99=   0.80ms max=   0.88ms s1=134/0 s2=133/0 s3=133/0 
+t= 19.0s ok=400  err=0    p50=  0.37ms p99=   1.64ms max=   1.74ms s1=137/0 s2=135/0 s3=128/0 
+t= 20.0s ok=400  err=0    p50=  0.36ms p99=   0.88ms max=   0.91ms s1=138/0 s2=137/0 s3=125/0 
+t= 21.0s ok=400  err=0    p50=  0.36ms p99=   3.30ms max=   3.37ms s1=136/0 s2=134/0 s3=130/0 
+t= 22.0s ok=400  err=0    p50=  0.37ms p99=   0.96ms max=   0.98ms s1=133/0 s2=139/0 s3=128/0 
+t= 23.0s ok=400  err=0    p50=  0.37ms p99=   3.01ms max=   3.08ms s1=131/0 s2=133/0 s3=136/0 
+t= 24.0s ok=400  err=0    p50=  0.36ms p99=   0.69ms max=   0.73ms s1=142/0 s2=138/0 s3=120/0 
+t= 25.0s ok=400  err=0    p50=  0.37ms p99=   1.07ms max=   1.32ms s1=138/0 s2=135/0 s3=127/0 
+t= 26.0s ok=400  err=0    p50=  0.38ms p99=   2.63ms max=   2.79ms s1=134/0 s2=132/0 s3=134/0 
+t= 27.0s ok=400  err=0    p50=  0.37ms p99=   1.09ms max=   1.16ms s1=136/0 s2=139/0 s3=125/0 
+t= 28.0s ok=400  err=0    p50=  0.38ms p99=   0.81ms max=   0.94ms s1=133/0 s2=136/0 s3=131/0 
+t= 29.0s ok=400  err=0    p50=  0.38ms p99=   0.96ms max=   3.76ms s1=135/0 s2=135/0 s3=130/0 
+t= 30.0s ok=400  err=0    p50=  0.38ms p99=   1.47ms max=   1.59ms s1=139/0 s2=134/0 s3=127/0 
+t= 31.0s ok=400  err=0    p50=  0.38ms p99=   0.99ms max=   1.01ms s1=135/0 s2=134/0 s3=131/0 
+t= 32.0s ok=400  err=0    p50=  0.38ms p99=   1.66ms max=   1.69ms s1=134/0 s2=139/0 s3=127/0 
+t= 33.0s ok=400  err=0    p50=  0.38ms p99=   1.51ms max=   1.69ms s1=134/0 s2=134/0 s3=132/0 
+t= 34.0s ok=400  err=0    p50=  0.38ms p99=   0.86ms max=   0.89ms s1=138/0 s2=136/0 s3=126/0 
+t= 35.0s ok=400  err=0    p50=  0.36ms p99=   0.73ms max=   0.84ms s1=137/0 s2=136/0 s3=127/0 
+t= 36.0s ok=400  err=0    p50=  0.38ms p99=   0.73ms max=   0.83ms s1=131/0 s2=136/0 s3=133/0 
+t= 37.0s ok=400  err=0    p50=  0.39ms p99=   1.07ms max=   1.15ms s1=136/0 s2=137/0 s3=127/0 
+t= 38.0s ok=400  err=0    p50=  0.36ms p99=   0.61ms max=   0.66ms s1=136/0 s2=135/0 s3=129/0 
+t= 39.0s ok=400  err=0    p50=  0.38ms p99=   1.02ms max=   1.03ms s1=138/0 s2=135/0 s3=127/0 
+t= 40.0s ok=400  err=0    p50=  0.38ms p99=   0.61ms max=   0.81ms s1=135/0 s2=133/0 s3=132/0 
+t= 41.0s ok=400  err=0    p50=  0.39ms p99=   1.36ms max=   1.42ms s1=135/0 s2=138/0 s3=127/0 
+t= 42.0s ok=400  err=0    p50=  0.38ms p99=   0.97ms max=   1.08ms s1=138/0 s2=133/0 s3=129/0 
+t= 43.0s ok=400  err=0    p50=  0.39ms p99=   0.72ms max=   0.77ms s1=132/0 s2=138/0 s3=130/0 
+t= 44.0s ok=400  err=0    p50=  0.34ms p99=   0.54ms max=   0.67ms s1=136/0 s2=137/0 s3=127/0 
+t= 45.0s ok=400  err=0    p50=  0.38ms p99=   0.63ms max=   0.67ms s1=140/0 s2=132/0 s3=128/0 
+t= 46.0s ok=400  err=0    p50=  0.36ms p99=   0.60ms max=   0.77ms s1=130/0 s2=141/0 s3=129/0 
+t= 47.0s ok=400  err=0    p50=  0.37ms p99=   0.59ms max=   0.80ms s1=137/0 s2=132/0 s3=131/0 
+t= 48.0s ok=400  err=0    p50=  0.38ms p99=   0.65ms max=   0.81ms s1=133/0 s2=137/0 s3=130/0 
+t= 49.0s ok=400  err=0    p50=  0.39ms p99=   0.69ms max=   0.76ms s1=140/0 s2=134/0 s3=126/0 
+t= 50.0s ok=400  err=0    p50=  0.38ms p99=   0.97ms max=   1.02ms s1=137/0 s2=137/0 s3=126/0 
+t= 50.0s ok=16   err=0    p50=  0.41ms p99=   0.50ms max=   0.50ms s1=4/0 s2=6/0 s3=6/0 
+total: 16526 ok, 30 errors, 0 stale reads, 0 shed, max latency 2285.7ms
+s1: 29 errors between t=7s and t=15s (8 seconds with errors, 6 of them with no ok)
+s2: 1 errors between t=15s and t=15s (1 seconds with errors, 0 of them with no ok)
+errors: 14x io:timed out; 1x server:Moved:1090; 1x server:Moved:1222; 1x server:Moved:1283; 1x server:Moved:1415; 1x server:Moved:1940; 1x server:Moved:2182; 1x server:Moved:304; 1x server:Moved:3882; 1x server:Moved:436; 1x server:Moved:4369; 1x server:Moved:4501; 1x server:Moved:4675; 1x server:Moved:4807; 1x server:Moved:5351; 1x server:Moved:5410; 1x server:Moved:610
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

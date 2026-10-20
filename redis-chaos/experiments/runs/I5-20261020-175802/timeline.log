@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay connect-probe --count 40 --interval-ms 1000 --parallel 50
+t=  5.0s incident: 50 new connections per second while master dc2-s2 is killed
+t=  5.2s   kill: rc-dc2-s2
+t= 25.0s heal
+t= 25.2s   start: rc-dc2-s2
+t= 39.0s load finished
+t= 40.6s cluster healthy

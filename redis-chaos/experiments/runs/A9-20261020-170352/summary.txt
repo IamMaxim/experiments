@@ -1,0 +1,4 @@
+total: 12836 ok, 1282 errors, 0 stale reads, 0 shed, max latency 5.5ms
+s1: 1282 errors between t=9s and t=20s (11 seconds with errors, 10 of them with no ok)
+errors: 1266x Extension; 16x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

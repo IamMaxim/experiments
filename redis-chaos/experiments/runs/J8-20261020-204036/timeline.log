@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --self-heal both --tcp-user-timeout-ms 2000 load --duration 80
+t=  5.0s incident: self-heal BOTH + TCP_USER_TIMEOUT 2s: blackhole master dc1-s1 for 60s (A1)
+t=  5.0s   isolated dc1-s1
+t= 65.0s heal
+t= 65.5s   healed everything
+t= 80.0s load finished
+t= 80.8s cluster healthy

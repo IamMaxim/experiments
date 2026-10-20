@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --tcp-user-timeout-ms 2000 load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with TCP_USER_TIMEOUT 2s
+t=  5.1s   isolated dc1-s1
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 50.0s load finished
+t= 50.7s cluster healthy

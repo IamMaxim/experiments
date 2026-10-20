@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --overall-timeout-ms 0 load --duration 50 --keys 100000
+t=  5.0s incident: split brain as D4, no overall timeout (see the raw server errors)
+t=  5.0s   cut dc1-s1 <-> dc1-s2,dc1-s3,dc2,dc3
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 50.1s load finished
+t= 52.1s cluster healthy

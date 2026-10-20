@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50 --open-loop
+t=  5.0s incident: blackhole dc1-s1, open-loop load (no head-of-line blocking)
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 58.4s load finished
+t= 60.7s cluster healthy

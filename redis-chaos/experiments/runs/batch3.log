@@ -1,0 +1,247 @@
+== D1: client cut off from dc1 only; cluster healthy
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: client cut off from dc1 only; cluster healthy
+t=  5.0s   cut client <-> dc1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 58.5s load finished
+t= 59.3s cluster healthy
+total: 2456 ok, 240 errors, 0 stale reads, 0 shed, max latency 5.3ms
+s1: 240 errors between t=9s and t=52s (20 seconds with errors, 20 of them with no ok)
+errors: 240x io:timed out
+verify: 760 keys intact, 240 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/D1-20261020-172313
+== D2: one-way: packets from master dc1-s1 to everyone are dropped
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: one-way: packets from master dc1-s1 to everyone are dropped
+t=  5.0s   cut dc1-s1 -> all,client (one way)
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 61.9s load finished
+t= 64.6s cluster healthy
+total: 2435 ok, 240 errors, 0 stale reads, 0 shed, max latency 5.9ms
+s1: 240 errors between t=9s and t=51s (19 seconds with errors, 19 of them with no ok)
+errors: 240x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/D2-20261020-172416
+== D3: one-way: packets from everyone to master dc1-s1 are dropped
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: one-way: packets from everyone to master dc1-s1 are dropped
+t=  5.0s   cut all,client -> dc1-s1 (one way)
+t= 35.0s heal
+t= 35.7s   healed everything
+t= 57.7s load finished
+t= 57.8s cluster healthy
+total: 2431 ok, 240 errors, 0 stale reads, 0 shed, max latency 1282.2ms
+s1: 240 errors between t=9s and t=53s (30 seconds with errors, 30 of them with no ok)
+errors: 240x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/D3-20261020-172528
+== D5: client cut from the 3 seed masters, then masters moved to the replicas
+t=  0.0s load started: rcc --nodelay load --duration 60
+t=  5.0s incident: client cut from the 3 seed masters, then masters moved to the replicas
+t=  5.0s   cut client <-> dc1-s1,dc2-s2,dc3-s3
+t= 15.1s   OK
+t= 15.1s   OK
+t= 15.2s   OK
+t= 45.0s heal
+t= 45.6s   healed everything
+t= 60.0s load finished
+t= 60.6s cluster healthy
+total: 3088 ok, 272 errors, 0 stale reads, 0 shed, max latency 1361.3ms
+s1: 95 errors between t=9s and t=57s (17 seconds with errors, 17 of them with no ok)
+s2: 90 errors between t=9s and t=57s (17 seconds with errors, 17 of them with no ok)
+s3: 87 errors between t=9s and t=57s (17 seconds with errors, 17 of them with no ok)
+errors: 272x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/D5-20261020-172632
+== D6: dc1 <-> dc2 partition, then manual failover to dc2-s1 through it
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: dc1 <-> dc2 partition, then manual failover to dc2-s1 through it
+t=  5.0s   cut dc1 <-> dc2
+t= 13.1s   OK
+t= 35.0s heal
+t= 35.7s   healed everything
+t= 50.0s load finished
+t= 51.4s cluster healthy
+total: 20016 ok, 0 errors, 0 stale reads, 0 shed, max latency 6.2ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/D6-20261020-172737
+== E1a: 100ms delay into every node, TCP_NODELAY on
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: 100ms delay into every node, TCP_NODELAY on
+t=  5.6s   netem all: delay 100ms  (applies to packets entering all)
+t= 25.0s heal
+t= 25.5s   healed everything
+t= 40.0s load finished
+t= 42.4s cluster healthy
+total: 11222 ok, 0 errors, 0 stale reads, 0 shed, max latency 126.5ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E1a-20261020-172833
+== E1b: 100ms delay into every node, Nagle on (library default)
+t=  0.0s load started: rcc  load --duration 40
+t=  5.0s incident: 100ms delay into every node, Nagle on (library default)
+t=  5.7s   netem all: delay 100ms  (applies to packets entering all)
+t= 25.0s heal
+t= 25.7s   healed everything
+t= 40.0s load finished
+t= 42.4s cluster healthy
+total: 9862 ok, 0 errors, 0 stale reads, 0 shed, max latency 408.8ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E1b-20261020-172920
+== E2: 900ms delay into master dc1-s1 (just under the response timeout)
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: 900ms delay into master dc1-s1 (just under the response timeout)
+t=  5.1s   netem dc1-s1: delay 900ms  (applies to packets entering dc1-s1)
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 50.0s load finished
+t= 52.2s cluster healthy
+total: 9399 ok, 0 errors, 0 stale reads, 0 shed, max latency 2501.4ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E2-20261020-173007
+== E3: 1500ms delay into master dc1-s1 (over the response timeout)
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: 1500ms delay into master dc1-s1 (over the response timeout)
+t=  5.1s   netem dc1-s1: delay 1500ms  (applies to packets entering dc1-s1)
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 50.0s load finished
+t= 52.4s cluster healthy
+total: 8143 ok, 145 errors, 0 stale reads, 0 shed, max latency 2883.4ms
+s1: 145 errors between t=9s and t=36s (11 seconds with errors, 10 of them with no ok)
+errors: 145x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E3-20261020-173104
+== E4: 5% packet loss into master dc1-s1
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: 5% packet loss into master dc1-s1
+t=  5.0s   netem dc1-s1: loss 5%  (applies to packets entering dc1-s1)
+t= 35.0s heal
+t= 35.7s   healed everything
+t= 50.0s load finished
+t= 51.4s cluster healthy
+total: 19799 ok, 0 errors, 0 stale reads, 0 shed, max latency 282.1ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E4-20261020-173201
+== E5: 25% packet loss into master dc1-s1
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: 25% packet loss into master dc1-s1
+t=  5.1s   netem dc1-s1: loss 25%  (applies to packets entering dc1-s1)
+t= 35.0s heal
+t= 35.8s   healed everything
+t= 50.0s load finished
+t= 50.9s cluster healthy
+total: 15591 ok, 0 errors, 0 stale reads, 0 shed, max latency 1419.7ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E5-20261020-173258
+== E6: 60% packet loss into master dc1-s1
+t=  0.0s load started: rcc --nodelay load --duration 60
+t=  5.0s incident: 60% packet loss into master dc1-s1
+t=  5.0s   netem dc1-s1: loss 60%  (applies to packets entering dc1-s1)
+t= 45.0s heal
+t= 45.6s   healed everything
+t= 60.0s load finished
+t= 61.8s cluster healthy
+total: 7865 ok, 188 errors, 0 stale reads, 0 shed, max latency 2988.7ms
+s1: 188 errors between t=10s and t=48s (17 seconds with errors, 16 of them with no ok)
+errors: 188x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E6-20261020-173353
+== E7: 100ms delay into the client (slow client link)
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: 100ms delay into the client (slow client link)
+t=  5.0s   netem client: delay 100ms  (applies to packets entering client)
+t= 25.0s heal
+t= 25.6s   healed everything
+t= 40.0s load finished
+t= 41.3s cluster healthy
+total: 11104 ok, 0 errors, 0 stale reads, 0 shed, max latency 306.0ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/E7-20261020-173459
+== F1: reshard 2000 slots s1 -> s2 under load, then back
+t=  0.0s load started: rcc --nodelay load --duration 80
+t=  5.0s incident: reshard 2000 slots s1 -> s2 under load, then back
+t= 14.8s   moved 2000 slots to s2
+t= 36.6s   moved 2000 slots back
+t= 65.0s heal
+t= 80.0s load finished
+t= 82.3s cluster healthy
+total: 32016 ok, 0 errors, 0 stale reads, 0 shed, max latency 20.3ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/F1-20261020-173545
+== F2: scale out: add dc1-s4 as a 4th master and rebalance; then drain and remove it
+t=  0.0s load started: rcc --nodelay load --duration 115
+t=  5.0s incident: scale out: add dc1-s4 as a 4th master and rebalance; then drain and remove it
+t=  5.0s   added dc1-s4
+t= 35.2s   removed dc1-s4
+t= 95.0s heal
+t=115.0s load finished
+t=116.9s cluster healthy
+total: 46016 ok, 0 errors, 0 stale reads, 0 shed, max latency 5.8ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/F2-20261020-173711
+== F4: restart all 9 nodes at once
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: restart all 9 nodes at once
+t= 12.1s   restart: rc-dc1-s1 rc-dc1-s2 rc-dc1-s3 rc-dc2-s1 rc-dc2-s2 rc-dc2-s3 rc-dc3-s1 rc-dc3-s2 rc-dc3-s3
+t= 35.0s heal
+t= 50.0s load finished
+t= 50.6s cluster healthy
+total: 16385 ok, 36 errors, 0 stale reads, 0 shed, max latency 2679.2ms
+s1: 16 errors between t=7s and t=7s (1 seconds with errors, 1 of them with no ok)
+s2: 15 errors between t=10s and t=13s (3 seconds with errors, 2 of them with no ok)
+s3: 5 errors between t=13s and t=13s (1 seconds with errors, 1 of them with no ok)
+errors: 5x io:broken pipe; 20x io:timed out; 1x server:Moved:138; 1x server:Moved:1582; 1x server:Moved:17; 1x server:Moved:2918; 1x server:Moved:3150; 1x server:Moved:3274; 1x server:Moved:3868; 1x server:Moved:4267; 1x server:Moved:4962; 1x server:Moved:835; 1x server:Moved:984
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/F4-20261020-173913
+== F5: rolling restart of all 9 nodes, 10s apart
+t=  0.0s load started: rcc --nodelay load --duration 120
+t=  5.0s incident: rolling restart of all 9 nodes, 10s apart
+t=  5.7s   restart: rc-dc1-s1
+t= 15.9s   restart: rc-dc1-s2
+t= 26.2s   restart: rc-dc1-s3
+t= 36.6s   restart: rc-dc2-s1
+t= 47.2s   restart: rc-dc2-s2
+t= 57.5s   restart: rc-dc2-s3
+t= 67.8s   restart: rc-dc3-s1
+t= 78.1s   restart: rc-dc3-s2
+t= 88.8s   restart: rc-dc3-s3
+t=100.0s heal
+t=120.0s load finished
+t=120.8s cluster healthy
+total: 44612 ok, 48 errors, 0 stale reads, 0 shed, max latency 2566.4ms
+s1: 16 errors between t=7s and t=7s (1 seconds with errors, 1 of them with no ok)
+s2: 16 errors between t=48s and t=49s (2 seconds with errors, 2 of them with no ok)
+s3: 16 errors between t=89s and t=90s (2 seconds with errors, 1 of them with no ok)
+errors: 7x io:Connection refused (os error 111); 40x server:ClusterDown:The; 1x server:Moved:16011
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/F5-20261020-174008
+== F6: server drops idle connections (CONFIG SET timeout 1) under a 1 op/s load
+t=  0.0s load started: rcc --nodelay load --duration 50 --rate 1 --workers 1
+t=  5.0s incident: server drops idle connections (CONFIG SET timeout 1) under a 1 op/s load
+t=  5.3s   timeout 1 everywhere
+t= 35.0s heal
+t= 35.4s   timeout 0 everywhere
+t= 50.0s load finished
+t= 51.1s cluster healthy
+total: 42 ok, 9 errors, 0 stale reads, 0 shed, max latency 2.8ms
+s1: 2 errors between t=25s and t=29s (2 seconds with errors, 2 of them with no ok)
+s2: 4 errors between t=7s and t=33s (4 seconds with errors, 4 of them with no ok)
+s3: 3 errors between t=9s and t=27s (3 seconds with errors, 3 of them with no ok)
+errors: 8x io:broken pipe; 1x server:Moved:15194
+verify: 42 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/F6-20261020-174213
+== F7: CLIENT KILL TYPE normal on every master, 4 times 5s apart
+t=  0.0s load started: rcc --nodelay load --duration 45
+t=  5.0s incident: CLIENT KILL TYPE normal on every master, 4 times 5s apart
+t=  5.1s   killed clients on all masters
+t= 10.3s   killed clients on all masters
+t= 15.4s   killed clients on all masters
+t= 20.5s   killed clients on all masters
+t= 30.0s heal
+t= 45.0s load finished
+t= 47.1s cluster healthy
+total: 18016 ok, 0 errors, 0 stale reads, 0 shed, max latency 5.0ms
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/F7-20261020-174309

@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --keepalive-ms 1000 load --duration 50
+t=  5.0s incident: blackhole dc1-s1 with TCP keepalive 1s
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 58.4s load finished
+t= 58.8s cluster healthy

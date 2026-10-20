@@ -1,0 +1,9 @@
+t=  0.0s load started: rcc --nodelay connect-probe --count 45 --interval-ms 1000
+t=  5.0s incident: new connections while cluster_state is fail (dc1 and dc2 isolated)
+t=  5.1s   isolated dc1
+t=  5.2s   isolated dc2
+t= 30.0s heal
+t= 31.3s   healed everything
+t= 44.0s load finished
+t= 46.3s cluster healthy
+t= 76.2s rebalance failed

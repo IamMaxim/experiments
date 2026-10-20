@@ -1,0 +1,9 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: isolate dc1 and dc2 with cluster-require-full-coverage no
+t=  5.0s   isolated dc1
+t=  5.1s   isolated dc2
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 51.8s load finished
+t= 52.5s cluster healthy
+t= 82.1s rebalance failed

@@ -1,0 +1,69 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 1.861179ms
+t=  0.0s run 1792517635: mode=Set 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792517635:
+t=  1.0s ok=408  err=0    p50=  0.41ms p99=   3.55ms max=   3.61ms s1=132/0 s2=139/0 s3=137/0 
+t=  2.0s ok=400  err=0    p50=  0.34ms p99=   0.73ms max=   0.79ms s1=135/0 s2=130/0 s3=135/0 
+t=  3.0s ok=400  err=0    p50=  0.33ms p99=   0.65ms max=   0.75ms s1=126/0 s2=139/0 s3=135/0 
+t=  4.0s ok=392  err=0    p50=  0.30ms p99=   0.85ms max=   0.96ms s1=126/0 s2=126/0 s3=140/0 
+t=  5.0s ok=402  err=0    p50=  0.36ms p99=   0.98ms max=   1.27ms s1=138/0 s2=134/0 s3=130/0 
+t=  6.0s ok=110  err=0    p50=  0.32ms p99= 610.89ms max= 610.93ms s1=22/0 s2=44/0 s3=44/0 
+t=  7.0s ok=44   err=0    p50=  0.36ms p99= 640.16ms max= 640.16ms s1=16/0 s2=15/0 s3=13/0 
+t=  8.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  9.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t=  9.3s first 'io:timed out' on s1: timed out
+t= 10.0s ok=25   err=16   p50=  0.44ms p99=   4.99ms max=   4.99ms s1=0/16 s2=11/0 s3=14/0 16x io:timed out
+t= 11.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 12.0s ok=49   err=0    p50=  0.64ms p99=2186.47ms max=2186.47ms s1=16/0 s2=16/0 s3=17/0 
+t= 13.0s ok=126  err=0    p50=  0.34ms p99= 631.70ms max= 631.72ms s1=40/0 s2=43/0 s3=43/0 
+t= 14.0s ok=204  err=0    p50=  0.33ms p99= 619.13ms max= 619.22ms s1=65/0 s2=66/0 s3=73/0 
+t= 15.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 16.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 17.0s ok=28   err=16   p50=  0.35ms p99=   1.47ms max=   1.47ms s1=0/16 s2=15/0 s3=13/0 16x io:timed out
+t= 18.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 19.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 20.0s ok=40   err=15   p50=  0.30ms p99=   0.92ms max=   0.92ms s1=0/15 s2=19/0 s3=21/0 15x io:timed out
+t= 21.0s ok=4    err=1    p50=  0.33ms p99=   0.37ms max=   0.37ms s1=0/1 s2=2/0 s3=2/0 1x io:timed out
+t= 22.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 23.0s ok=20   err=14   p50=  0.21ms p99=   0.54ms max=   0.54ms s1=0/14 s2=11/0 s3=9/0 14x io:timed out
+t= 24.0s ok=8    err=2    p50=  0.26ms p99=   0.36ms max=   0.36ms s1=0/2 s2=5/0 s3=3/0 2x io:timed out
+t= 25.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 26.0s ok=10   err=7    p50=  0.37ms p99=   0.43ms max=   0.43ms s1=0/7 s2=6/0 s3=4/0 7x io:timed out
+t= 27.0s ok=25   err=9    p50=  0.25ms p99=   0.36ms max=   0.36ms s1=0/9 s2=10/0 s3=15/0 9x io:timed out
+t= 28.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 29.0s ok=10   err=5    p50=  0.36ms p99=   0.76ms max=   0.76ms s1=0/5 s2=6/0 s3=4/0 5x io:timed out
+t= 30.0s ok=21   err=11   p50=  0.22ms p99=   0.36ms max=   0.36ms s1=0/11 s2=12/0 s3=9/0 11x io:timed out
+t= 31.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 32.0s ok=2    err=2    p50=  0.46ms p99=   0.46ms max=   0.46ms s1=0/2 s2=1/0 s3=1/0 2x io:timed out
+t= 33.0s ok=34   err=14   p50=  0.23ms p99=   0.46ms max=   0.46ms s1=0/14 s2=15/0 s3=19/0 14x io:timed out
+t= 34.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 35.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 36.0s ok=32   err=16   p50=  0.30ms p99=   1.24ms max=   1.24ms s1=0/16 s2=15/0 s3=17/0 16x io:timed out
+t= 37.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 38.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 39.0s ok=40   err=16   p50=  0.30ms p99=   2.88ms max=   2.88ms s1=0/16 s2=20/0 s3=20/0 16x io:timed out
+t= 40.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 41.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 42.0s ok=24   err=16   p50=  0.29ms p99=   7.96ms max=   7.96ms s1=0/16 s2=13/0 s3=11/0 16x io:timed out
+t= 43.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 44.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 45.0s ok=30   err=16   p50=  0.23ms p99=   0.40ms max=   0.40ms s1=0/16 s2=14/0 s3=16/0 16x io:timed out
+t= 46.0s ok=1    err=0    p50=  0.25ms p99=   0.25ms max=   0.25ms s1=0/0 s2=0/0 s3=1/0 
+t= 47.0s ok=0    err=0    p50=  0.00ms p99=   0.00ms max=   0.00ms s1=0/0 s2=0/0 s3=0/0 
+t= 48.0s ok=162  err=12   p50=  0.62ms p99=2909.35ms max=2988.71ms s1=51/12 s2=56/0 s3=55/0 12x io:timed out
+t= 49.0s ok=399  err=0    p50=  0.36ms p99=   3.90ms max=   3.92ms s1=127/0 s2=135/0 s3=137/0 
+t= 50.0s ok=407  err=0    p50=  0.34ms p99=   0.88ms max=   1.01ms s1=131/0 s2=136/0 s3=140/0 
+t= 51.0s ok=400  err=0    p50=  0.37ms p99=   1.51ms max=   1.67ms s1=137/0 s2=130/0 s3=133/0 
+t= 52.0s ok=400  err=0    p50=  0.32ms p99=   0.66ms max=   1.06ms s1=122/0 s2=141/0 s3=137/0 
+t= 53.0s ok=392  err=0    p50=  0.30ms p99=   1.45ms max=   1.49ms s1=136/0 s2=126/0 s3=130/0 
+t= 54.0s ok=408  err=0    p50=  0.31ms p99=   0.54ms max=   0.62ms s1=130/0 s2=134/0 s3=144/0 
+t= 55.0s ok=400  err=0    p50=  0.30ms p99=   0.71ms max=   0.77ms s1=129/0 s2=135/0 s3=136/0 
+t= 56.0s ok=400  err=0    p50=  0.33ms p99=   1.38ms max=   1.41ms s1=137/0 s2=131/0 s3=132/0 
+t= 57.0s ok=392  err=0    p50=  0.36ms p99=   1.30ms max=   1.54ms s1=119/0 s2=139/0 s3=134/0 
+t= 58.0s ok=408  err=0    p50=  0.32ms p99=   0.70ms max=   1.11ms s1=139/0 s2=130/0 s3=139/0 
+t= 59.0s ok=395  err=0    p50=  0.32ms p99=   0.96ms max=   1.00ms s1=125/0 s2=133/0 s3=137/0 
+t= 60.0s ok=397  err=0    p50=  0.37ms p99=   1.09ms max=   1.14ms s1=129/0 s2=134/0 s3=134/0 
+t= 60.0s ok=16   err=0    p50=  0.49ms p99=   0.58ms max=   0.58ms s1=5/0 s2=4/0 s3=7/0 
+total: 7865 ok, 188 errors, 0 stale reads, 0 shed, max latency 2988.7ms
+s1: 188 errors between t=10s and t=48s (17 seconds with errors, 16 of them with no ok)
+errors: 188x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

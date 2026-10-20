@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: 100ms delay into every node, TCP_NODELAY on
+t=  5.6s   netem all: delay 100ms  (applies to packets entering all)
+t= 25.0s heal
+t= 25.5s   healed everything
+t= 40.0s load finished
+t= 42.4s cluster healthy

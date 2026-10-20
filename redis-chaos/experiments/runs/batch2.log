@@ -1,0 +1,243 @@
+== D4b: split brain as D4, every key written at most once (loss not masked by later writes)
+t=  0.0s load started: rcc --nodelay load --duration 50 --keys 100000
+t=  5.0s incident: split brain as D4, every key written at most once (loss not masked by later writes)
+t=  5.0s   cut dc1-s1 <-> dc1-s2,dc1-s3,dc2,dc3
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 50.1s load finished
+t= 52.3s cluster healthy
+total: 10452 ok, 125 errors, 0 stale reads, 0 shed, max latency 2563.3ms
+s1: 125 errors between t=15s and t=37s (12 seconds with errors, 10 of them with no ok)
+errors: 125x io:timed out
+verify: 9605 keys intact, 0 ahead (unacked write landed), 847 LOST acknowledged writes
+  lost rcc:1792516023:2018: acked 127, now None
+  lost rcc:1792516023:2020: acked 127, now None
+  lost rcc:1792516023:2021: acked 127, now None
+  lost rcc:1792516023:2024: acked 127, now None
+  lost rcc:1792516023:2025: acked 127, now None
+  lost rcc:1792516023:2028: acked 127, now None
+  lost rcc:1792516023:2029: acked 127, now None
+  lost rcc:1792516023:2032: acked 128, now None
+  lost rcc:1792516023:2033: acked 128, now None
+  lost rcc:1792516023:2036: acked 128, now None
+run: experiments/runs/D4b-20261020-170702
+== D4c: split brain as D4, no overall timeout (see the raw server errors)
+t=  0.0s load started: rcc --nodelay --overall-timeout-ms 0 load --duration 50 --keys 100000
+t=  5.0s incident: split brain as D4, no overall timeout (see the raw server errors)
+t=  5.0s   cut dc1-s1 <-> dc1-s2,dc1-s3,dc2,dc3
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 50.1s load finished
+t= 52.1s cluster healthy
+total: 10719 ok, 84 errors, 0 stale reads, 0 shed, max latency 3845.9ms
+s1: 84 errors between t=16s and t=36s (9 seconds with errors, 8 of them with no ok)
+errors: 84x server:ClusterDown:The
+verify: 9776 keys intact, 0 ahead (unacked write landed), 943 LOST acknowledged writes
+  lost rcc:1792516077:2017: acked 127, now None
+  lost rcc:1792516077:2022: acked 127, now None
+  lost rcc:1792516077:2026: acked 127, now None
+  lost rcc:1792516077:2031: acked 127, now None
+  lost rcc:1792516077:2035: acked 128, now None
+  lost rcc:1792516077:2039: acked 128, now None
+  lost rcc:1792516077:2040: acked 128, now None
+  lost rcc:1792516077:2041: acked 128, now None
+  lost rcc:1792516077:2044: acked 128, now None
+  lost rcc:1792516077:2045: acked 128, now None
+run: experiments/runs/D4c-20261020-170756
+== B1: blackhole replica dc2-s1, master-only reads
+t=  0.0s load started: rcc --nodelay load --duration 50 --mode mixed
+t=  5.0s incident: blackhole replica dc2-s1, master-only reads
+t=  5.0s   isolated dc2-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 50.0s load finished
+t= 52.2s cluster healthy
+total: 20016 ok, 0 errors, 0 stale reads, 0 shed, max latency 5.7ms
+verify: 752 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/B1-20261020-170849
+== B2: blackhole replica dc2-s1, reads from replicas
+t=  0.0s load started: rcc --nodelay --read-replicas load --duration 50 --mode mixed
+t=  5.0s incident: blackhole replica dc2-s1, reads from replicas
+t=  5.0s   isolated dc2-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 57.7s load finished
+t= 58.8s cluster healthy
+total: 5723 ok, 85 errors, 20 stale reads, 0 shed, max latency 2241.4ms
+s1: 85 errors between t=9s and t=52s (40 seconds with errors, 0 of them with no ok)
+errors: 85x io:timed out
+verify: 736 keys intact, 0 ahead (unacked write landed), 16 LOST acknowledged writes
+  lost rcc:1792516184:0: acked 253, now Some(127)
+  lost rcc:1792516184:213: acked 329, now Some(77)
+  lost rcc:1792516184:303: acked 391, now Some(143)
+  lost rcc:1792516184:320: acked 273, now Some(21)
+  lost rcc:1792516184:329: acked 331, now Some(83)
+  lost rcc:1792516184:498: acked 347, now Some(95)
+  lost rcc:1792516184:641: acked 293, now Some(41)
+  lost rcc:1792516184:678: acked 295, now Some(169)
+  lost rcc:1792516184:684: acked 353, now Some(167)
+  lost rcc:1792516184:689: acked 233, now Some(107)
+run: experiments/runs/B2-20261020-170943
+== B3: kill replica dc2-s1, reads from replicas
+t=  0.0s load started: rcc --nodelay --read-replicas load --duration 50 --mode mixed
+t=  5.0s incident: kill replica dc2-s1, reads from replicas
+t=  5.0s   kill: rc-dc2-s1
+t= 35.0s heal
+t= 35.1s   start: rc-dc2-s1
+t= 50.0s load finished
+t= 52.0s cluster healthy
+total: 20016 ok, 0 errors, 63 stale reads, 0 shed, max latency 4.9ms
+verify: 752 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/B3-20261020-171043
+== C1: isolate whole dc1
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: isolate whole dc1
+t=  5.0s   isolated dc1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 58.6s load finished
+t= 59.0s cluster healthy
+total: 2503 ok, 240 errors, 0 stale reads, 0 shed, max latency 2.8ms
+s1: 240 errors between t=9s and t=52s (20 seconds with errors, 20 of them with no ok)
+errors: 240x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/C1-20261020-171137
+== C2: isolate dc1 and dc2: only dc3 left, no master quorum
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: isolate dc1 and dc2: only dc3 left, no master quorum
+t=  5.0s   isolated dc1
+t=  5.1s   isolated dc2
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 55.9s load finished
+t= 56.8s cluster healthy
+t= 86.7s rebalance failed
+total: 2055 ok, 240 errors, 0 stale reads, 0 shed, max latency 964.1ms
+s1: 86 errors between t=9s and t=48s (14 seconds with errors, 14 of them with no ok)
+s2: 84 errors between t=9s and t=48s (14 seconds with errors, 14 of them with no ok)
+s3: 70 errors between t=18s and t=51s (12 seconds with errors, 12 of them with no ok)
+errors: 240x io:timed out
+verify: 979 keys intact, 0 ahead (unacked write landed), 21 LOST acknowledged writes
+  lost rcc:1792516363:0: acked 127, now Some(64)
+  lost rcc:1792516363:1: acked 127, now Some(64)
+  lost rcc:1792516363:110: acked 131, now Some(69)
+  lost rcc:1792516363:18: acked 128, now Some(65)
+  lost rcc:1792516363:19: acked 128, now Some(65)
+  lost rcc:1792516363:21: acked 128, now Some(65)
+  lost rcc:1792516363:32: acked 129, now Some(66)
+  lost rcc:1792516363:33: acked 129, now Some(66)
+  lost rcc:1792516363:36: acked 129, now Some(66)
+  lost rcc:1792516363:37: acked 129, now Some(66)
+run: experiments/runs/C2-20261020-171242
+== C3: isolate dc1 and dc2 with cluster-require-full-coverage no
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: isolate dc1 and dc2 with cluster-require-full-coverage no
+t=  5.0s   isolated dc1
+t=  5.1s   isolated dc2
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 51.8s load finished
+t= 52.5s cluster healthy
+t= 82.1s rebalance failed
+total: 2118 ok, 240 errors, 0 stale reads, 0 shed, max latency 2.7ms
+s1: 74 errors between t=9s and t=42s (12 seconds with errors, 11 of them with no ok)
+s2: 68 errors between t=9s and t=42s (12 seconds with errors, 11 of them with no ok)
+s3: 98 errors between t=18s and t=51s (12 seconds with errors, 12 of them with no ok)
+errors: 240x io:timed out
+verify: 980 keys intact, 0 ahead (unacked write landed), 20 LOST acknowledged writes
+  lost rcc:1792516452:1: acked 127, now Some(64)
+  lost rcc:1792516452:18: acked 128, now Some(65)
+  lost rcc:1792516452:19: acked 128, now Some(65)
+  lost rcc:1792516452:20: acked 128, now Some(65)
+  lost rcc:1792516452:3: acked 127, now Some(64)
+  lost rcc:1792516452:33: acked 129, now Some(66)
+  lost rcc:1792516452:36: acked 129, now Some(66)
+  lost rcc:1792516452:37: acked 129, now Some(66)
+  lost rcc:1792516452:42: acked 127, now Some(65)
+  lost rcc:1792516452:46: acked 127, now Some(65)
+run: experiments/runs/C3-20261020-171410
+== C4: client isolated together with dc1 (client in the minority DC)
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: client isolated together with dc1 (client in the minority DC)
+t=  5.0s   isolated dc1,client
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 50.0s load finished
+t= 52.3s cluster healthy
+total: 7210 ok, 161 errors, 0 stale reads, 0 shed, max latency 2042.4ms
+s1: 36 errors between t=18s and t=39s (8 seconds with errors, 7 of them with no ok)
+s2: 62 errors between t=9s and t=36s (10 seconds with errors, 10 of them with no ok)
+s3: 63 errors between t=9s and t=36s (10 seconds with errors, 10 of them with no ok)
+errors: 161x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/C4-20261020-171534
+== C5: rolling DC loss: dc1, then dc2, then dc3, 20s each with 15s gaps
+t=  0.0s load started: rcc --nodelay load --duration 120
+t=  5.0s incident: rolling DC loss: dc1, then dc2, then dc3, 20s each with 15s gaps
+t=  5.0s   isolated dc1
+t= 25.7s   healed everything
+t= 40.8s   isolated dc2
+t= 61.5s   healed everything
+t= 76.6s   isolated dc3
+t=100.0s heal
+t=100.6s   healed everything
+t=120.0s load finished
+t=120.4s cluster healthy
+total: 15860 ok, 409 errors, 0 stale reads, 0 shed, max latency 2961.8ms
+s1: 188 errors between t=9s and t=68s (17 seconds with errors, 17 of them with no ok)
+s2: 48 errors between t=44s and t=68s (9 seconds with errors, 9 of them with no ok)
+s3: 173 errors between t=53s and t=105s (18 seconds with errors, 17 of them with no ok)
+errors: 409x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/C5-20261020-171628
+== C6: dc1 flapping 3s off / 3s on, 8 times (below node-timeout)
+t=  0.0s load started: rcc --nodelay load --duration 68
+t=  5.0s incident: dc1 flapping 3s off / 3s on, 8 times (below node-timeout)
+t=  5.1s   isolated dc1
+t=  8.2s   healed 'isolate dc1'
+t= 11.3s   isolated dc1
+t= 14.4s   healed 'isolate dc1'
+t= 17.5s   isolated dc1
+t= 20.6s   healed 'isolate dc1'
+t= 23.7s   isolated dc1
+t= 26.8s   healed 'isolate dc1'
+t= 29.9s   isolated dc1
+t= 33.0s   healed 'isolate dc1'
+t= 36.1s   isolated dc1
+t= 39.2s   healed 'isolate dc1'
+t= 42.3s   isolated dc1
+t= 45.4s   healed 'isolate dc1'
+t= 48.5s   isolated dc1
+t= 51.7s   healed 'isolate dc1'
+t= 53.0s heal
+t= 53.6s   healed everything
+t= 68.0s load finished
+t= 68.6s cluster healthy
+total: 4408 ok, 301 errors, 0 stale reads, 0 shed, max latency 2746.9ms
+s1: 301 errors between t=9s and t=64s (33 seconds with errors, 32 of them with no ok)
+errors: 301x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/C6-20261020-171830
+== C7: dc1 flapping 8s off / 8s on, 4 times (above node-timeout)
+t=  0.0s load started: rcc --nodelay load --duration 84
+t=  5.0s incident: dc1 flapping 8s off / 8s on, 4 times (above node-timeout)
+t=  5.0s   isolated dc1
+t= 13.3s   healed 'isolate dc1'
+t= 21.4s   isolated dc1
+t= 29.7s   healed 'isolate dc1'
+t= 37.8s   isolated dc1
+t= 45.9s   healed 'isolate dc1'
+t= 54.0s   isolated dc1
+t= 62.2s   healed 'isolate dc1'
+t= 69.0s heal
+t= 69.8s   healed everything
+t= 84.0s load finished
+t= 85.1s cluster healthy
+t=115.6s rebalance failed
+total: 28520 ok, 64 errors, 0 stale reads, 0 shed, max latency 1068.5ms
+s1: 64 errors between t=9s and t=18s (4 seconds with errors, 4 of them with no ok)
+errors: 64x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/C7-20261020-171945
+== D1: client cut off from dc1 only; cluster healthy
+cluster not healthy before D1

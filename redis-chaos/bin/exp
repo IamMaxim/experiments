@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# Runs one experiment from experiments/scenarios/<ID>.sh under client load
+# and collects everything needed to write its report:
+#
+#   experiments/runs/<ID>-<ts>/client.log   load lines + redis-rs log lines (one clock)
+#                              status.log   `chaos status` + `incidents` every 2s
+#                              timeline.log what the runner did, on the same clock
+#                              summary.txt  the client's totals
+#
+# A scenario file sets ID, TITLE, HOLD (seconds the incident lasts), and
+# defines `incident`; optionally LEAD (5), TAIL (15), CLIENT_ARGS, LOAD_ARGS,
+# LOAD_CMD (default: load), RUST_LOG, and the hooks `pre`, `heal` (default:
+# chaos heal), `post`. `incident` runs in the background, so it may sleep and
+# sequence several steps; the runner heals after HOLD seconds regardless.
+#
+#   bin/exp A1            run experiments/scenarios/A1.sh
+#   bin/exp A1 A3 C2      run several in sequence
+set -euo pipefail
+cd "$(dirname "$0")/.."
+C=bin/chaos
+
+run_one() {
+  local scn=experiments/scenarios/$1.sh
+  [[ -f $scn ]] || { echo "no scenario $scn"; return 1; }
+  # Defaults the scenario may override.
+  LEAD=5 HOLD=20 TAIL=15 CLIENT_ARGS="--nodelay" LOAD_ARGS="" LOAD_CMD=load RUST_LOG=redis=debug TITLE=$1
+  unset -f incident pre post heal 2>/dev/null || true
+  heal() { $C heal; }
+  # shellcheck disable=SC1090
+  source "$scn"
+  declare -f incident >/dev/null || { echo "$scn defines no incident()"; return 1; }
+  local dir=experiments/runs/$1-$(date +%Y%m%d-%H%M%S)
+  mkdir -p "$dir"
+  local t0
+  now() { local ms=$(( $(date +%s%3N) - t0 )); printf '%d.%d' $((ms / 1000)) $((ms % 1000 / 100)); }
+  stamp() { printf 't=%5ss %s\n' "$(now)" "$*" | tee -a "$dir/timeline.log"; }
+
+  echo "== $1: $TITLE"
+  $C heal >/dev/null
+  $C rebalance >/dev/null || { echo "cluster not healthy before $1"; return 1; }
+  declare -f pre >/dev/null && pre
+  local total=$((LEAD + HOLD + TAIL))
+  local cmd=("$LOAD_CMD")
+  [[ $LOAD_CMD == load ]] && cmd+=(--duration "$total")
+  # shellcheck disable=SC2206
+  cmd+=($LOAD_ARGS)
+  t0=$(date +%s%3N)
+  # shellcheck disable=SC2086
+  docker exec -e "RUST_LOG=$RUST_LOG" rc-client /app/rcc $CLIENT_ARGS "${cmd[@]}" >"$dir/client.log" 2>&1 &
+  local load=$!
+  (
+    while kill -0 "$load" 2>/dev/null; do
+      { printf '### t=%5ss\n' "$(now)"; $C status 2>&1 | grep -v '^(\*'; $C incidents 2>&1 | grep -v '^  none'; echo; } >>"$dir/status.log"
+      sleep 2
+    done
+  ) &
+  local snap=$!
+  stamp "load started: rcc $CLIENT_ARGS ${cmd[*]}"
+  sleep "$LEAD"
+  stamp "incident: $TITLE"
+  ( incident 2>&1 | while read -r l; do stamp "  $l"; done ) &
+  local inc=$!
+  sleep "$HOLD"
+  stamp "heal"
+  heal 2>&1 | while read -r l; do stamp "  $l"; done
+  wait "$inc" 2>/dev/null || true
+  wait "$load" || stamp "client exited with $?"
+  stamp "load finished"
+  wait "$snap" 2>/dev/null || true
+  declare -f post >/dev/null && post
+  if $C wait 90 >/dev/null; then stamp "cluster healthy"; else stamp "cluster NOT healthy after 90s"; fi
+  $C status >"$dir/status-final.txt"
+  $C rebalance >/dev/null 2>&1 || stamp "rebalance failed"
+  grep -E '^(total:|verify:|errors:|s[123]:|fan:|  lost)' "$dir/client.log" >"$dir/summary.txt" || true
+  cat "$dir/summary.txt"
+  echo "run: $dir"
+}
+
+for id in "$@"; do run_one "$id"; done

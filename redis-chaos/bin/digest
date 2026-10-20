@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Condense one experiment run (experiments/runs/<id>-<ts>/) for reading.
+
+Prints the runner timeline, the client's per-second lines (quiet stretches
+collapsed), the library log lines, and the cluster's role/state changes
+between status snapshots.
+
+    bin/digest experiments/runs/A1-20261020-165215
+"""
+import re
+import sys
+from pathlib import Path
+
+run = Path(sys.argv[1])
+
+print("## timeline")
+print((run / "timeline.log").read_text().rstrip())
+
+print("\n## client")
+prev = None
+collapsed = 0
+for line in (run / "client.log").read_text().splitlines():
+    m = re.match(r"t=\s*([\d.]+)s (ok=.*)", line)
+    if not m:
+        if collapsed:
+            print(f"   ... {collapsed} more like the one above")
+            collapsed = 0
+        print(line)
+        prev = None
+        continue
+    # Collapse consecutive seconds that look the same (no errors, same shards up).
+    key = re.sub(r"ok=\d+\s+|err=0\s+|p\d+=\s*[\d.]+ms|max=\s*[\d.]+ms|s[123]=\d+/", "", m.group(2))
+    quiet = "err=0" in line
+    if quiet and key == prev:
+        collapsed += 1
+        continue
+    if collapsed:
+        print(f"   ... {collapsed} more like the one above")
+        collapsed = 0
+    print(line)
+    prev = key if quiet else None
+if collapsed:
+    print(f"   ... {collapsed} more like the one above")
+
+print("\n## cluster (changes between 2s snapshots)")
+state = {}
+snap_t = None
+rules = []
+cur_rules = []
+
+
+def flush(t):
+    global state, cur_rules, rules
+    changes = []
+    for node, info in sorted(cur.items()):
+        if state.get(node) != info:
+            changes.append(f"{node}={info}")
+    for node in sorted(set(state) - set(cur)):
+        changes.append(f"{node}=?")
+    if cur_rules != rules:
+        changes.append("incidents: " + ("; ".join(cur_rules) if cur_rules else "none"))
+    if changes:
+        print(f"t={t:>6}  " + "  ".join(changes))
+    state = dict(cur)
+    rules = list(cur_rules)
+
+
+cur = {}
+for line in (run / "status.log").read_text().splitlines():
+    if line.startswith("### t="):
+        if snap_t is not None:
+            flush(snap_t)
+        snap_t = line.split("t=")[1].strip().rstrip("s")
+        cur = {}
+        cur_rules = []
+        continue
+    m = re.match(r"(dc\d-s\d)\s+\S+\s+(\S+)\s*(.*)", line)
+    if m:
+        node, role, rest = m.groups()
+        if role.startswith("UNREACHABLE"):
+            cur[node] = "DOWN"
+            continue
+        parts = rest.split()
+        # REPLICA-OF (may be absent or "(down)"), STATE, EPOCH, SLOTS..., SEES-FAILED
+        fails = parts[-1] if parts and ("!" in parts[-1] or "?" in parts[-1]) else ""
+        st = re.search(r"\b(ok|fail)\b", rest)
+        state_s = st.group(1) if st else "?"
+        epoch = re.search(r"\b(ok|fail)\s+(\d+)", rest)
+        ep = epoch.group(2) if epoch else "?"
+        r = "M" if role.startswith("master") else "R"
+        if "(down)" in rest:
+            r += "(link down)"
+        if role.endswith("*"):
+            r += "*"
+        info = f"{r} {state_s} e{ep}"
+        if fails:
+            info += f" sees[{fails}]"
+        cur[node] = info
+    elif ("comment" in line or "netem" in line) and not line.startswith("=="):
+        c = re.search(r'comment "([^"]+)"', line)
+        cur_rules.append(c.group(1) if c else line.strip())
+if snap_t is not None:
+    flush(snap_t)

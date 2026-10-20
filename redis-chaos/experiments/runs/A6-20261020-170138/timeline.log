@@ -1,0 +1,6 @@
+t=  0.0s load started: rcc --nodelay load --duration 40
+t=  5.0s incident: docker restart of master dc1-s1 (back within node-timeout)
+t=  6.0s   restart: rc-dc1-s1
+t= 25.0s heal
+t= 40.0s load finished
+t= 40.7s cluster healthy

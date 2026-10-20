@@ -1,0 +1,5 @@
+total: 16526 ok, 30 errors, 0 stale reads, 0 shed, max latency 2285.7ms
+s1: 29 errors between t=7s and t=15s (8 seconds with errors, 6 of them with no ok)
+s2: 1 errors between t=15s and t=15s (1 seconds with errors, 0 of them with no ok)
+errors: 14x io:timed out; 1x server:Moved:1090; 1x server:Moved:1222; 1x server:Moved:1283; 1x server:Moved:1415; 1x server:Moved:1940; 1x server:Moved:2182; 1x server:Moved:304; 1x server:Moved:3882; 1x server:Moved:436; 1x server:Moved:4369; 1x server:Moved:4501; 1x server:Moved:4675; 1x server:Moved:4807; 1x server:Moved:5351; 1x server:Moved:5410; 1x server:Moved:610
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

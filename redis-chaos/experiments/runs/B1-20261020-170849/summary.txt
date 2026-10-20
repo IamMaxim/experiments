@@ -1,0 +1,2 @@
+total: 20016 ok, 0 errors, 0 stale reads, 0 shed, max latency 5.7ms
+verify: 752 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

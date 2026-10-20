@@ -1,0 +1,101 @@
+t=  0.0s LOG DEBUG Received request to reconnect to initial nodes
+t=  0.0s connected in 2.411563ms
+t=  0.0s run 1792518696: mode=Txn 16 closed-loop workers 400 ops/s, 1000 keys, prefix rcc:1792518696:
+t=  1.0s ok=400  err=0    p50=  0.49ms p99=   1.89ms max=   1.93ms s1=134/0 s2=132/0 s3=134/0 
+t=  2.0s ok=400  err=0    p50=  0.56ms p99=   3.15ms max=   3.24ms s1=136/0 s2=129/0 s3=135/0 
+t=  3.0s ok=400  err=0    p50=  0.55ms p99=   1.64ms max=   2.73ms s1=132/0 s2=137/0 s3=131/0 
+t=  4.0s ok=400  err=0    p50=  0.45ms p99=   1.43ms max=   1.49ms s1=145/0 s2=125/0 s3=130/0 
+t=  5.0s LOG WARN ClusterConnInner: connection to 10.77.22.10:6379 lost; repairing in background
+t=  5.0s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: Connection refused (os error 111)
+t=  5.0s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: Connection refused (os error 111)
+t=  5.0s ok=400  err=0    p50=  0.56ms p99=   1.14ms max=   1.20ms s1=131/0 s2=135/0 s3=134/0 
+t=  5.0s first 'server:ExecAbort:[(Index' on s2: Transaction aborted: [(Index 0, error: Moved: 9877 10.77.22.10:6379), (Index 1, error: Moved: 9877 10.77.22.10:6379), (Index 2, error: Moved: 9877 10.77.22.10:6379)]
+t=  6.0s ok=269  err=131  p50=  0.61ms p99=   3.99ms max=   4.07ms s1=134/0 s2=0/131 s3=135/0 131x server:ExecAbort:[(Index
+t=  6.1s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  6.1s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t=  7.0s ok=270  err=130  p50=  0.60ms p99=   1.30ms max=   1.39ms s1=136/0 s2=0/130 s3=134/0 130x server:ExecAbort:[(Index
+t=  7.2s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  7.2s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t=  8.0s ok=264  err=136  p50=  0.48ms p99=   1.16ms max=   1.31ms s1=132/0 s2=0/136 s3=132/0 136x server:ExecAbort:[(Index
+t=  8.4s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  8.4s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t=  9.0s ok=273  err=127  p50=  0.48ms p99=   1.97ms max=   2.03ms s1=144/0 s2=0/127 s3=129/0 127x server:ExecAbort:[(Index
+t=  9.8s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t=  9.8s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 10.0s ok=266  err=134  p50=  0.56ms p99=   2.34ms max=   2.40ms s1=132/0 s2=0/134 s3=134/0 134x server:ExecAbort:[(Index
+t= 11.0s ok=270  err=130  p50=  0.53ms p99=   4.12ms max=   4.25ms s1=133/0 s2=0/130 s3=137/0 130x server:ExecAbort:[(Index
+t= 11.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 11.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 12.0s ok=173  err=227  p50=  0.47ms p99=   5.08ms max=   5.17ms s1=92/45 s2=0/132 s3=81/50 227x server:ExecAbort:[(Index
+t= 13.0s ok=176  err=224  p50=  0.54ms p99=   3.05ms max=   3.20ms s1=80/52 s2=15/120 s3=81/52 224x server:ExecAbort:[(Index
+t= 13.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 13.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 14.0s ok=289  err=111  p50=  0.54ms p99=   1.66ms max=   1.79ms s1=146/0 s2=14/111 s3=129/0 111x server:ExecAbort:[(Index
+t= 15.0s ok=288  err=112  p50=  0.47ms p99=   3.65ms max=   3.76ms s1=128/0 s2=24/112 s3=136/0 112x server:ExecAbort:[(Index
+t= 15.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 15.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 16.0s ok=284  err=116  p50=  0.51ms p99=   3.46ms max=   3.73ms s1=133/0 s2=16/116 s3=135/0 116x server:ExecAbort:[(Index
+t= 17.0s ok=285  err=115  p50=  0.54ms p99=   1.68ms max=   1.82ms s1=141/0 s2=15/115 s3=129/0 115x server:ExecAbort:[(Index
+t= 17.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 17.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 18.0s ok=281  err=119  p50=  0.47ms p99=   4.21ms max=   4.42ms s1=130/0 s2=18/119 s3=133/0 119x server:ExecAbort:[(Index
+t= 19.0s ok=285  err=115  p50=  0.47ms p99=   5.87ms max=   5.93ms s1=144/0 s2=8/115 s3=133/0 115x server:ExecAbort:[(Index
+t= 19.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 19.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 20.0s ok=284  err=116  p50=  0.57ms p99=   1.42ms max=   1.48ms s1=129/0 s2=20/116 s3=135/0 116x server:ExecAbort:[(Index
+t= 21.0s ok=287  err=113  p50=  0.56ms p99=   0.97ms max=   1.03ms s1=135/0 s2=19/113 s3=133/0 113x server:ExecAbort:[(Index
+t= 21.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 21.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 22.0s ok=287  err=113  p50=  0.59ms p99=   3.71ms max=   3.75ms s1=142/0 s2=16/113 s3=129/0 113x server:ExecAbort:[(Index
+t= 23.0s ok=276  err=124  p50=  0.56ms p99=   1.37ms max=   1.45ms s1=128/0 s2=14/124 s3=134/0 124x server:ExecAbort:[(Index
+t= 23.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 23.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 24.0s ok=295  err=105  p50=  0.54ms p99=   1.31ms max=   1.40ms s1=144/0 s2=17/105 s3=134/0 105x server:ExecAbort:[(Index
+t= 25.0s ok=281  err=119  p50=  0.54ms p99=   1.06ms max=   1.11ms s1=129/0 s2=18/119 s3=134/0 119x server:ExecAbort:[(Index
+t= 25.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 25.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 26.0s ok=293  err=107  p50=  0.49ms p99=   0.68ms max=   0.73ms s1=137/0 s2=23/107 s3=133/0 107x server:ExecAbort:[(Index
+t= 27.0s ok=282  err=118  p50=  0.52ms p99=   1.54ms max=   1.63ms s1=139/0 s2=14/118 s3=129/0 118x server:ExecAbort:[(Index
+t= 27.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 27.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 28.0s ok=278  err=122  p50=  0.49ms p99=   0.78ms max=   0.90ms s1=129/0 s2=15/122 s3=134/0 122x server:ExecAbort:[(Index
+t= 29.0s ok=290  err=110  p50=  0.48ms p99=   1.10ms max=   1.38ms s1=144/0 s2=12/110 s3=134/0 110x server:ExecAbort:[(Index
+t= 29.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 29.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 30.0s ok=277  err=123  p50=  0.50ms p99=   5.09ms max=   5.19ms s1=129/0 s2=15/123 s3=133/0 123x server:ExecAbort:[(Index
+t= 31.0s ok=286  err=114  p50=  0.54ms p99=   1.71ms max=   1.75ms s1=139/0 s2=15/114 s3=132/0 114x server:ExecAbort:[(Index
+t= 31.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 31.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 32.0s ok=280  err=120  p50=  0.53ms p99=   2.00ms max=   2.22ms s1=136/0 s2=13/120 s3=131/0 120x server:ExecAbort:[(Index
+t= 33.0s ok=278  err=122  p50=  0.47ms p99=   3.10ms max=   3.12ms s1=130/0 s2=13/122 s3=135/0 122x server:ExecAbort:[(Index
+t= 33.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 33.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 34.0s ok=292  err=108  p50=  0.44ms p99=   1.77ms max=   1.87ms s1=144/0 s2=15/108 s3=133/0 108x server:ExecAbort:[(Index
+t= 35.0s ok=274  err=126  p50=  0.51ms p99=   0.88ms max=   0.97ms s1=131/0 s2=10/126 s3=133/0 126x server:ExecAbort:[(Index
+t= 35.6s LOG WARN Failed to connect to node: 10.77.22.10:6379, due to: timed out
+t= 35.6s LOG DEBUG repair_node: failed to reconnect 10.77.22.10:6379: timed out
+t= 36.0s ok=281  err=119  p50=  0.54ms p99=   2.28ms max=   2.43ms s1=135/0 s2=12/119 s3=134/0 119x server:ExecAbort:[(Index
+t= 36.6s LOG INFO ClusterConnInner: reconnected to 10.77.22.10:6379 
+t= 37.0s ok=272  err=128  p50=  0.52ms p99=   4.28ms max=   4.35ms s1=138/0 s2=7/128 s3=127/0 128x server:ExecAbort:[(Index
+t= 38.0s ok=268  err=132  p50=  0.46ms p99=   1.23ms max=   1.30ms s1=130/0 s2=0/132 s3=138/0 132x server:ExecAbort:[(Index
+t= 39.0s ok=276  err=124  p50=  0.49ms p99=   1.14ms max=   1.17ms s1=144/0 s2=0/124 s3=132/0 124x server:ExecAbort:[(Index
+t= 40.0s ok=264  err=142  p50=  0.52ms p99=   1.20ms max=   1.31ms s1=131/0 s2=0/142 s3=133/0 142x server:ExecAbort:[(Index
+t= 41.0s ok=269  err=125  p50=  0.61ms p99=   1.84ms max=   1.87ms s1=133/0 s2=0/125 s3=136/0 125x server:ExecAbort:[(Index
+t= 42.0s ok=265  err=135  p50=  0.57ms p99=   1.50ms max=   1.54ms s1=140/0 s2=0/135 s3=125/0 135x server:ExecAbort:[(Index
+t= 43.0s ok=269  err=131  p50=  0.51ms p99=   1.85ms max=   2.02ms s1=130/0 s2=0/131 s3=139/0 131x server:ExecAbort:[(Index
+t= 44.0s ok=274  err=126  p50=  0.56ms p99=   1.59ms max=   1.69ms s1=143/0 s2=0/126 s3=131/0 126x server:ExecAbort:[(Index
+t= 45.0s ok=267  err=133  p50=  0.53ms p99=   1.33ms max=   1.36ms s1=133/0 s2=0/133 s3=134/0 133x server:ExecAbort:[(Index
+t= 46.0s ok=267  err=133  p50=  0.48ms p99=   0.89ms max=   0.96ms s1=132/0 s2=0/133 s3=135/0 133x server:ExecAbort:[(Index
+t= 47.0s ok=266  err=134  p50=  0.51ms p99=   0.94ms max=   1.07ms s1=141/0 s2=0/134 s3=125/0 134x server:ExecAbort:[(Index
+t= 48.0s ok=268  err=132  p50=  0.57ms p99=   2.02ms max=   2.11ms s1=131/0 s2=0/132 s3=137/0 132x server:ExecAbort:[(Index
+t= 49.0s ok=276  err=124  p50=  0.48ms p99=   1.01ms max=   1.08ms s1=141/0 s2=0/124 s3=135/0 124x server:ExecAbort:[(Index
+t= 50.0s ok=265  err=135  p50=  0.60ms p99=   2.94ms max=   3.10ms s1=131/0 s2=0/135 s3=134/0 135x server:ExecAbort:[(Index
+t= 50.0s ok=11   err=5    p50=  0.83ms p99=   1.31ms max=   1.31ms s1=6/0 s2=0/5 s3=5/0 5x server:ExecAbort:[(Index
+total: 14271 ok, 5745 errors, 0 stale reads, 0 shed, max latency 5.9ms
+s1: 97 errors between t=12s and t=13s (2 seconds with errors, 0 of them with no ok)
+s2: 5546 errors between t=6s and t=50s (46 seconds with errors, 21 of them with no ok)
+s3: 102 errors between t=12s and t=13s (2 seconds with errors, 0 of them with no ok)
+errors: 5745x server:ExecAbort:[(Index
+t= 50.0s LOG WARN async cluster client recovery: beginning slot refresh
+t= 50.0s LOG INFO async cluster client recovery: slot refresh complete
+verify: 3000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes

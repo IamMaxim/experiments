@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 115
+t=  5.0s incident: scale out: add dc1-s4 as a 4th master and rebalance; then drain and remove it
+t=  5.0s   added dc1-s4
+t= 35.2s   removed dc1-s4
+t= 95.0s heal
+t=115.0s load finished
+t=116.9s cluster healthy

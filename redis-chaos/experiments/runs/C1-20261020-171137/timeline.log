@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: isolate whole dc1
+t=  5.0s   isolated dc1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 58.6s load finished
+t= 59.0s cluster healthy

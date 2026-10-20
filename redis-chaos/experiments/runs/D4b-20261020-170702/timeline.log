@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50 --keys 100000
+t=  5.0s incident: split brain as D4, every key written at most once (loss not masked by later writes)
+t=  5.0s   cut dc1-s1 <-> dc1-s2,dc1-s3,dc2,dc3
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 50.1s load finished
+t= 52.3s cluster healthy

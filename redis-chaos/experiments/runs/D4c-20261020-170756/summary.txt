@@ -1,0 +1,14 @@
+total: 10719 ok, 84 errors, 0 stale reads, 0 shed, max latency 3845.9ms
+s1: 84 errors between t=16s and t=36s (9 seconds with errors, 8 of them with no ok)
+errors: 84x server:ClusterDown:The
+verify: 9776 keys intact, 0 ahead (unacked write landed), 943 LOST acknowledged writes
+  lost rcc:1792516077:2017: acked 127, now None
+  lost rcc:1792516077:2022: acked 127, now None
+  lost rcc:1792516077:2026: acked 127, now None
+  lost rcc:1792516077:2031: acked 127, now None
+  lost rcc:1792516077:2035: acked 128, now None
+  lost rcc:1792516077:2039: acked 128, now None
+  lost rcc:1792516077:2040: acked 128, now None
+  lost rcc:1792516077:2041: acked 128, now None
+  lost rcc:1792516077:2044: acked 128, now None
+  lost rcc:1792516077:2045: acked 128, now None

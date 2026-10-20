@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: graceful stop (SIGTERM) of master dc1-s1, start after 30s
+t=  5.5s   stop: rc-dc1-s1
+t= 35.0s heal
+t= 35.1s   start: rc-dc1-s1
+t= 50.0s load finished
+t= 51.1s cluster healthy

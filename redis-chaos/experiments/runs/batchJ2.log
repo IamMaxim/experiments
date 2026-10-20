@@ -1,0 +1,44 @@
+== J7: self-heal BOTH: MULTI/EXEC while master dc2-s2 is killed (H1)
+t=  0.0s load started: rcc --nodelay --self-heal both load --duration 50 --mode txn
+t=  5.0s incident: self-heal BOTH: MULTI/EXEC while master dc2-s2 is killed (H1)
+t=  5.1s   kill: rc-dc2-s2
+t= 35.0s heal
+t= 35.1s   start: rc-dc2-s2
+t= 50.0s load finished
+t= 50.8s cluster healthy
+total: 17592 ok, 888 errors, 0 stale reads, 0 shed, max latency 1969.5ms
+s1: 98 errors between t=13s and t=13s (1 seconds with errors, 0 of them with no ok)
+s2: 703 errors between t=6s and t=15s (9 seconds with errors, 7 of them with no ok)
+s3: 87 errors between t=13s and t=13s (1 seconds with errors, 0 of them with no ok)
+errors: 888x server:ExecAbort:[(Index
+verify: 3000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J7-20261020-203942
+== J8: self-heal BOTH + TCP_USER_TIMEOUT 2s: blackhole master dc1-s1 for 60s (A1)
+t=  0.0s load started: rcc --nodelay --self-heal both --tcp-user-timeout-ms 2000 load --duration 80
+t=  5.0s incident: self-heal BOTH + TCP_USER_TIMEOUT 2s: blackhole master dc1-s1 for 60s (A1)
+t=  5.0s   isolated dc1-s1
+t= 65.0s heal
+t= 65.5s   healed everything
+t= 80.0s load finished
+t= 80.8s cluster healthy
+total: 28352 ok, 33 errors, 0 stale reads, 0 shed, max latency 2004.3ms
+s1: 32 errors between t=8s and t=16s (7 seconds with errors, 5 of them with no ok)
+s3: 1 errors between t=16s and t=16s (1 seconds with errors, 0 of them with no ok)
+errors: 18x io:timed out; 1x server:Moved:0; 1x server:Moved:132; 1x server:Moved:1394; 1x server:Moved:155; 1x server:Moved:1568; 1x server:Moved:1639; 1x server:Moved:1700; 1x server:Moved:1763; 1x server:Moved:1964; 1x server:Moved:3136; 1x server:Moved:3610; 1x server:Moved:3990; 1x server:Moved:4261; 1x server:Moved:4979; 1x server:Moved:850
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J8-20261020-204036
+== J9: self-heal BOTH: kill -9 master dc2-s2 (A3 regression check)
+t=  0.0s load started: rcc --nodelay --self-heal both load --duration 50
+t=  5.0s incident: self-heal BOTH: kill -9 master dc2-s2 (A3 regression check)
+t=  5.0s   kill: rc-dc2-s2
+t= 35.0s heal
+t= 35.1s   start: rc-dc2-s2
+t= 50.0s load finished
+t= 50.8s cluster healthy
+total: 16626 ok, 25 errors, 0 stale reads, 0 shed, max latency 2286.4ms
+s2: 24 errors between t=9s and t=15s (6 seconds with errors, 4 of them with no ok)
+s3: 1 errors between t=15s and t=15s (1 seconds with errors, 0 of them with no ok)
+errors: 25x io:timed out
+verify: 1000 keys intact, 0 ahead (unacked write landed), 0 LOST acknowledged writes
+run: experiments/runs/J9-20261020-204200
+batchJ2 exit 0

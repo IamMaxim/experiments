@@ -1,0 +1,9 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: isolate dc1 and dc2: only dc3 left, no master quorum
+t=  5.0s   isolated dc1
+t=  5.1s   isolated dc2
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 55.9s load finished
+t= 56.8s cluster healthy
+t= 86.7s rebalance failed

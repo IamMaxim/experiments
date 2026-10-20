@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay --self-heal rebuild load --duration 80
+t=  5.0s incident: self-heal REBUILD: blackhole master dc1-s1 for 60s (A1)
+t=  5.0s   isolated dc1-s1
+t= 65.0s heal
+t= 65.6s   healed everything
+t= 80.0s load finished
+t= 82.4s cluster healthy

@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50 --mode mixed
+t=  5.0s incident: blackhole replica dc2-s1, master-only reads
+t=  5.0s   isolated dc2-s1
+t= 35.0s heal
+t= 35.6s   healed everything
+t= 50.0s load finished
+t= 52.2s cluster healthy

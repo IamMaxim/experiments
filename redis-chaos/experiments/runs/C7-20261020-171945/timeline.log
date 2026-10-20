@@ -1,0 +1,15 @@
+t=  0.0s load started: rcc --nodelay load --duration 84
+t=  5.0s incident: dc1 flapping 8s off / 8s on, 4 times (above node-timeout)
+t=  5.0s   isolated dc1
+t= 13.3s   healed 'isolate dc1'
+t= 21.4s   isolated dc1
+t= 29.7s   healed 'isolate dc1'
+t= 37.8s   isolated dc1
+t= 45.9s   healed 'isolate dc1'
+t= 54.0s   isolated dc1
+t= 62.2s   healed 'isolate dc1'
+t= 69.0s heal
+t= 69.8s   healed everything
+t= 84.0s load finished
+t= 85.1s cluster healthy
+t=115.6s rebalance failed

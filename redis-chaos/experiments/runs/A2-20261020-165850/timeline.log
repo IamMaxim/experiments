@@ -1,0 +1,7 @@
+t=  0.0s load started: rcc --nodelay load --duration 50
+t=  5.0s incident: master dc1-s1 cut off with ICMP reject
+t=  5.0s   isolated dc1-s1
+t= 35.0s heal
+t= 35.5s   healed everything
+t= 58.8s load finished
+t= 61.1s cluster healthy

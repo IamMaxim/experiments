@@ -1,0 +1,356 @@
+### t=  0.0s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t=  2.2s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t=  4.5s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t=  6.8s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t=  9.1s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 11.5s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s3?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 13.8s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 16.1s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 18.4s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 20.8s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 23.1s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 25.5s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 27.8s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 30.1s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 32.5s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 34.8s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       dc2-s1?,dc2-s2?,dc2-s3?
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 dc2-s3?,dc2-s1?,dc2-s2?
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 dc2-s1?,dc2-s2?,dc2-s3?
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 dc1-s1?,dc1-s3?,dc1-s2?
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   dc1-s3?,dc1-s2?,dc1-s1?
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 dc1-s3?,dc1-s2?,dc1-s1?
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+  ip saddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } ip daddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } drop comment "cut dc1 dc2" # handle 162
+  ip saddr { 10.77.21.10, 10.77.22.10, 10.77.23.10 } ip daddr { 10.77.11.10, 10.77.12.10, 10.77.13.10 } drop comment "cut dc1 dc2" # handle 165
+== netem
+== containers not running
+
+### t= 37.2s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t= 39.5s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t= 41.9s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t= 44.2s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t= 46.5s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
+### t= 48.9s
+NODE     IP           ROLE     REPLICA-OF      STATE  EPOCH SLOTS        SEES-FAILED (!=fail ?=pfail)
+dc1-s1   10.77.11.10  master                   ok     76    0-5460       
+dc1-s2   10.77.12.10  replica  dc2-s2          ok     76                 
+dc1-s3   10.77.13.10  replica  dc3-s3          ok     76                 
+dc2-s1   10.77.21.10  replica  dc1-s1          ok     76                 
+dc2-s2   10.77.22.10  master                   ok     76    5461-10922   
+dc2-s3   10.77.23.10  replica  dc3-s3          ok     76                 
+dc3-s1   10.77.31.10  replica  dc1-s1          ok     76                 
+dc3-s2   10.77.32.10  replica  dc2-s2          ok     76                 
+dc3-s3   10.77.33.10  master                   ok     76    10923-16383  
+== network rules
+== netem
+== containers not running
+
